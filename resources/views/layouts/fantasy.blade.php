@@ -11,16 +11,21 @@
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ URL::to('css/styles.css') }}">
-
-  <script src="{{URL::to('js/app.js') }}" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="{{ URL::to('css/all.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
 </head>
 
 <body>
-  <div class="container">
-      @yield('content')
-  </div>
+    @yield('content')
 
+
+    <script src="{{URL::to('js/jquery.js') }}"></script>
+	<script src="{{URL::to('js/custom.js') }}"></script>
+	<script src="{{URL::to('js/all.min.js') }}"></script>
+	<script src="{{URL::to('js/bootstrap.min.js') }}"></script>
+	<script src="{{URL::to('js/bootstrap.js') }}"></script>
+	<script src="{{URL::to('js/lightbox.js') }}"></script>
 </body>
 
 </html>
