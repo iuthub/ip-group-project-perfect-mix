@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ URL::to('css/styles.css') }}">
 
+  <script src="{{URL::to('js/app.js') }}" type="text/javascript"></script>
+
 </head>
 
 <body>

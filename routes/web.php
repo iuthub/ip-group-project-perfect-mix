@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,12 +11,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('mainPage.index');
-});
-Route::get('login/', function () {
-    return view('auth.login');
-})->name('auth.login');
+Route::get('/', [
+	'uses' => 'PostsController@getIndex',
+	'as' => 'mainIndex'
+]);
+
+Route::post('register', [
+	'uses' => 'PostsController@createAdmin',
+	'as' => 'createAdmin'
+]);
+
+Route::get('loginIndex', [
+	'uses' => 'PostsController@loginIndex',
+	'as' => 'loginIndex'
+]);
+
+// Route::get('login/', function () {
+//     return view('auth.login');
+// })->name('auth.login');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
