@@ -10,10 +10,22 @@
 			<li><a href="#">Table Ordering</a></li>
 			<li><a href="#">Contacts</a></li>
 		</nav>
-		<a class="button" href="#" id="loginForm">Log In</a>
+		
+			
+
+			@if(!Auth::check())
+				<a class="button" href="{{route('login')}}" id="loginForm">Log In</a>
+			@else
+				<a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout </a>
+							
+				<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+					{{ csrf_field() }}
+				</form>
+			
+			@endif
+
 
 	</header>
-
 
 
 	<section class="hero">
@@ -23,6 +35,11 @@
 
 
 	</section>
+
+
+	
+
+
 
 
 <!--
@@ -46,7 +63,7 @@
 			<li>
 				<img class="group1" src="assets/projectPhotos/Group1.png" alt="">
 				<h4><strong>Delicious</strong> foods from <br>the popular <strong>chef</strong> cookers</h4>
-				</li>
+			</li>
 			<li>
 				<img class="group1" src="assets/projectPhotos/Group2.png" alt="">
 				<h4> <strong>Friendly</strong> atmosphere  </h4>
@@ -60,6 +77,7 @@
 
 
 	<section class="reviews">
+
 		<h3 class="title">What others say:</h3>
 
 		<p class="quote">Mauris sit amet mauris a arcu eleifend ultricies eget ut dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
@@ -82,8 +100,6 @@
 		<a href="#"> <img src="assets/projectPhotos/logo.png" alt="logo"></a>
 		<ul>
 			<li><a href="#"><img src="assets/icons/address.svg" alt=""></a></li>
-
-
 		</ul>
 
 		<ul>

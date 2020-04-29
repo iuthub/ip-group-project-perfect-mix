@@ -9,7 +9,7 @@
 
                 <div class="main">
                    <p class="sign" align="center">{{ __('Login') }}</p>
-                    <form method="POST" class="form1" action="{{ route('login') }}">
+                    <form method="POST" class="form1" action="{{ url('/login') }}">
                         @csrf
 
                         <div >
@@ -54,12 +54,12 @@
                       -->
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                              <a class="submit" align="center">{{'Log In'}}</a>
+                              <button class="submit" align="center">{{'Log In'}}</button>
 
                                 @if (Route::has('password.request'))
-                                  <p class="forgot" align="center"><a href="#">{{'Forgot Password?'}}</p>
+                                  <p class="forgot" align="center"><a href="{{ url('/password/reset') }}">{{'Forgot Password?'}}</p>
                                 @endif
-                                 <p class="register" align="center"><a href="#">  {{ __('Sign Up') }}</p>
+                                 <p class="register" align="center"><a href="{{route('register') }}">  {{ __('Sign Up') }}</p>
                             </div>
                         </div>
                     </form>
