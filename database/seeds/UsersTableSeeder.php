@@ -12,11 +12,22 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
+
         $user = new User([
-        	'full_name'=>'Jasur Makhsudov',
-        	'email'=>'j.makhsudov@student.inha.uz',
+            'full_name'=>'Jasur Makhsudov',
+            'email'=>'j.makhsudov@student.inha.uz',
+            'address'=>'Tashkent',
             'phone_number'=>'+998933926354',
-        	'password'=>Hash::make('jasur')
+            'password'=>Hash::make('jasur'),
+        ]);
+        $user->save();
+
+        $user = new User([
+        	'full_name'=>'Alex Michael',
+        	'email'=>'a.michael@student.inha.uz',
+            'address'=>'Tashkent',
+            'phone_number'=>'+998955555555',
+        	'password'=>Hash::make('alex'),
         ]);
         $user->save();
         

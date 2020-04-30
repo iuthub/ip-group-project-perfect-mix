@@ -4,17 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Vaucher extends Model
+class FoodType extends Model
 {
-
     protected $fillable = [
-        'coupon_type', 'value'
+        'name'
     ];
-    
+
     public $timestamps = false;
 
-    public function user(){
-        return $this->hasMany('App\User');
+    public function food(){
+    	return $this->hasMany('App\Food');
     }
-
 }

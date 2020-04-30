@@ -14,8 +14,8 @@ class CreateOrderHistoryTable extends Migration
     public function up()
     {
         Schema::create('order_history', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
-            $table->integer('food_id')->unsigned();
+            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('food_id');
             
             $table->date('created_at');
         });

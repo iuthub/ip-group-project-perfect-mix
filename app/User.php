@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'full_name', 'email', 'phone_number' , 'password'
+        'full_name','address', 'email', 'phone_number' , 'password'
     ];
 
     /**
@@ -51,6 +51,10 @@ class User extends Authenticatable
 
     public function vaucher(){
         return $this->belongsTo('App\Vaucher');
+    }
+
+    public function role(){
+        return $this->belongsTo('App\Role');
     }
 
 }

@@ -18,4 +18,11 @@ class Food extends Model
         return $this->belongsTo('App\OrderHistory');
     }
 
+    public function cuisine(){
+    	return $this->belongsTo('App\Cuisine');
+    }
+
+    public function type(){
+    	return $this->belongsTo('App\FoodType');
+    }
 }
