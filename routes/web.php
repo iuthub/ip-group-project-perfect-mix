@@ -50,3 +50,7 @@ Route::POST('/selected-foodType', 'PostsController@saveFoodType')->name('save.se
 Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
