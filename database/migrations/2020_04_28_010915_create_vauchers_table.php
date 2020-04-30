@@ -15,7 +15,7 @@ class CreateVauchersTable extends Migration
     {
         Schema::create('vauchers', function (Blueprint $table) {
             $table->increments('id');   
-            $table->string('coupon_type');
+            $table->string('type');
             $table->integer('value');
         });
     }

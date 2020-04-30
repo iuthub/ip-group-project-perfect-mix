@@ -16,14 +16,15 @@ Route::get('/', [
 	'as' => 'mainIndex'
 ]);
 
-Route::post('register', [
-	'uses' => 'PostsController@createAdmin',
-	'as' => 'createAdmin'
+
+Route::get('/table', [
+	'uses' => 'PostsController@table',
+	'as' => 'table'
 ]);
 
-Route::get('loginIndex', [
-	'uses' => 'PostsController@loginIndex',
-	'as' => 'loginIndex'
+Route::get('/edit', [
+	'uses' => 'PostsController@adminInfoChange',
+	'as' => 'userInfoEdit'
 ]);
 
 // Route::get('login/', function () {
