@@ -11,7 +11,7 @@ class CuisinesTableSeeder extends Seeder
      */
     public function run()
     {
-         $cuisine = new Cuisine([
+        $cuisine = new Cuisine([
             'name' => 'Uzbek'
         ]);
         $cuisine->save();
@@ -28,6 +28,11 @@ class CuisinesTableSeeder extends Seeder
 
         $cuisine = new Cuisine([
             'name' => 'Italian'
+        ]);
+        $cuisine->save();
+
+        $cuisine = new Cuisine([
+            'name' => 'American'
         ]);
         $cuisine->save();
     }
