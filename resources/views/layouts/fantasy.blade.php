@@ -19,7 +19,6 @@
 <body>
     @yield('content')
 
-
     <script src="{{URL::to('js/jquery.js') }}"></script>
 	<script src="{{URL::to('js/custom.js') }}"></script>
 	<script src="{{URL::to('js/all.min.js') }}"></script>
