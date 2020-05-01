@@ -27,54 +27,27 @@ Route::get('/edit', [
 	'as' => 'userInfoEdit'
 ]);
 
+Route::get('/addFood', [
+    'uses' => 'PostsController@getAddFood',
+    'as' => 'food.addFood'
+]);
 
-Route::group([
-	'prefix'=>'dashboard',
-	'middleware' => ['auth', 'verified']
-], function(){
-
-	Route::get('/', [
-		'uses' => 'PostsController@getDashboardIndex',
-		'as'=> 'dashboardIndex'
-	]);
-
-	// Route::get('/edit/{id}', [
-	// 	'uses' => 'TaskController@getAdminEdit',
-	// 	'as' => 'adminEdit'
-	// ]);
-
-
-	// Route::post('/edit', [
-	// 	'uses' => 'TaskController@postAdminEdit',
-	// 	'as' => 'adminEditPost'
-	// ]);
-
-
-	// Route::get('/create', [
-	// 	'uses' => 'TaskController@getAdminCreate',
-	// 	'as' => 'adminCreate'
-	// ]);
-
-	// Route::post('/create', [
-	// 	'uses' => 'TaskController@postAdminCreate',
-	// 	'as' => 'adminCreatePost'
-	// ]);
-
-	// Route::get('/delete/{id}', [
-	// 	'uses' => 'TaskController@getAdminDelete',
-	// 	'as' => 'adminDelete'
-	// ]);
-
-		
-});
-
+Route::post('/addFood', [
+    'uses' => 'PostsController@postAddFood',
+    'as' => 'food.addFood'
+]);
 
 // Route::get('login/', function () {
 //     return view('auth.login');
 // })->name('auth.login');
 
+Route::get('/selected-cuisine', 'PostsController@populateCuisines');
+Route::POST('/selected-cuisine', 'PostsController@saveCuisine')->name('save.selected-cuisine');
 
-Auth::routes(['verify'=>true]);
+Route::get('/selected-foodType', 'PostsController@populateFoodType');
+Route::POST('/selected-foodType', 'PostsController@saveFoodType')->name('save.selected-foodType');
+
+Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home');
 
