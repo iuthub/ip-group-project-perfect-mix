@@ -1,4 +1,4 @@
-@extends('layouts.fantasy')
+@extends('layouts.header')
 
 @section('content')
 
