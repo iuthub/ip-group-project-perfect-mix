@@ -28,13 +28,18 @@ class PostsController extends Controller
         ]);
     }
 
-    public function createAdmin(Request $req){
-    	// $this->validate($req,['
-			
-    	// 	']);
+    public function getDashboardIndex(){
     		
-    	return view('mainPage.index');
-
-
+        if(Auth::user()->role->name=='admin'){
+            return view('admin.index');
+        }
+        elseif(Auth::user()->role->name=='employer')
+            {
+                return view('employer.index');
+            }
+        else 
+            {
+                return view('user.index');
+            }
     }
 }

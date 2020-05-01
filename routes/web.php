@@ -27,11 +27,54 @@ Route::get('/edit', [
 	'as' => 'userInfoEdit'
 ]);
 
+
+Route::group([
+	'prefix'=>'dashboard',
+	'middleware' => ['auth', 'verified']
+], function(){
+
+	Route::get('/', [
+		'uses' => 'PostsController@getDashboardIndex',
+		'as'=> 'dashboardIndex'
+	]);
+
+	// Route::get('/edit/{id}', [
+	// 	'uses' => 'TaskController@getAdminEdit',
+	// 	'as' => 'adminEdit'
+	// ]);
+
+
+	// Route::post('/edit', [
+	// 	'uses' => 'TaskController@postAdminEdit',
+	// 	'as' => 'adminEditPost'
+	// ]);
+
+
+	// Route::get('/create', [
+	// 	'uses' => 'TaskController@getAdminCreate',
+	// 	'as' => 'adminCreate'
+	// ]);
+
+	// Route::post('/create', [
+	// 	'uses' => 'TaskController@postAdminCreate',
+	// 	'as' => 'adminCreatePost'
+	// ]);
+
+	// Route::get('/delete/{id}', [
+	// 	'uses' => 'TaskController@getAdminDelete',
+	// 	'as' => 'adminDelete'
+	// ]);
+
+		
+});
+
+
 // Route::get('login/', function () {
 //     return view('auth.login');
 // })->name('auth.login');
 
-Auth::routes();
+
+Auth::routes(['verify'=>true]);
 
 //Route::get('/home', 'HomeController@index')->name('home');
 

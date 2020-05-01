@@ -1,4 +1,4 @@
-@extends('layouts.fantasy')
+@extends('layouts.header')
 
 @include('partials.navbar')
 
@@ -112,10 +112,11 @@
 							<input type="password" class="form-control" placeholder="Password" name="password">
 						</div>
 						<button type="submit" class="btn btn-primary mb-2">Login</button>
-                        {{-- @if (Route::has('password.request'))
-                            <p class="forgot" align="center"><a href="{{ url('/password/reset') }}">{{'Forgot Password?'}}</p>
+						@if (Route::has('password.request'))
+                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
                         @endif
-                            <p class="register" align="center"><a href="{{ url('register') }}">  {{ __('Sign Up') }}</p> --}}
 					</form>
 				</div>
 				<img src="assets/projectPhotos/ice-tea.png" alt="" class="login-bg">
