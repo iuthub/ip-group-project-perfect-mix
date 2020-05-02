@@ -7,8 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Food extends Model
 {
     protected $fillable = [
-        'name', 'description', 'type' , 'cuisine' , 'price', 'photo_path'
+        'name', 'description', 'type_id' , 'cuisine_id' , 'price', 'photo_path'
     ];
+
+    public $timestamps = false;
 
     public function order_process(){
         return $this->belongsTo('App\OrderProcess');
