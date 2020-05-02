@@ -30,10 +30,5 @@ class CuisinesTableSeeder extends Seeder
             'name' => 'Italian'
         ]);
         $cuisine->save();
-
-        $cuisine = new Cuisine([
-            'name' => 'American'
-        ]);
-        $cuisine->save();
     }
 }

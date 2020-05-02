@@ -41,16 +41,48 @@ Route::post('/addFood', [
 //     return view('auth.login');
 // })->name('auth.login');
 
-Route::get('/selected-cuisine', 'PostsController@populateCuisines');
-Route::POST('/selected-cuisine', 'PostsController@saveCuisine')->name('save.selected-cuisine');
 
-Route::get('/selected-foodType', 'PostsController@populateFoodType');
-Route::POST('/selected-foodType', 'PostsController@saveFoodType')->name('save.selected-foodType');
+Route::group([
+	'prefix'=>'dashboard',
+	'middleware' => ['auth', 'verified']
+], function(){
+
+	Route::get('/', [
+		'uses' => 'PostsController@getDashboardIndex',
+		'as'=> 'dashboardIndex'
+	]);
+
+	// Route::get('/edit/{id}', [
+	// 	'uses' => 'TaskController@getAdminEdit',
+	// 	'as' => 'adminEdit'
+	// ]);
+
+
+	// Route::post('/edit', [
+	// 	'uses' => 'TaskController@postAdminEdit',
+	// 	'as' => 'adminEditPost'
+	// ]);
+
+
+	// Route::get('/create', [
+	// 	'uses' => 'TaskController@getAdminCreate',
+	// 	'as' => 'adminCreate'
+	// ]);
+
+	// Route::post('/create', [
+	// 	'uses' => 'TaskController@postAdminCreate',
+	// 	'as' => 'adminCreatePost'
+	// ]);
+
+	// Route::get('/delete/{id}', [
+	// 	'uses' => 'TaskController@getAdminDelete',
+	// 	'as' => 'adminDelete'
+	// ]);
+
+		
+});
+
+
+Auth::routes(['verify'=>true]);
 
 Auth::routes();
-
-//Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

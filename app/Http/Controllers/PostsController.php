@@ -8,6 +8,7 @@ use App\FoodType;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class PostsController extends Controller
 {
@@ -31,41 +32,64 @@ class PostsController extends Controller
         ]);
     }
 
-    public function createAdmin(Request $req){
-    	// $this->validate($req,['
-
-    	// 	']);
-
-    	return view('mainPage.index');
+    public function getDashboardIndex(){
+            
+        if(Auth::user()->role->name=='admin'){
+            return view('admin.index');
+        }
+        elseif(Auth::user()->role->name=='employer')
+            {
+                return view('employer.index');
+            }
+        else 
+            {
+                return view('user.index');
+            }
     }
 
     public function getAddFood()
     {
+        $food_types = FoodType::all();
         $cuisines = Cuisine::all();
-        $food = Food::orderBy('created_at', 'desc')->paginate(2);
-        return view('food.addFood', ['food'=>$food]);
+        //$foods = Food::orderBy('created_at', 'desc')->paginate(2);
+        return view('food.addFood', ['cuisines'=>$cuisines , 'food_types'=>$food_types]);
     }
+
+
+    public function uploadOne(UploadedFile $uploadedFile, $folder = null, $disk = 'public', $filename = null)
+    {
+        $name = !is_null($filename) ? $filename : Str::random(25);
+
+        $file = $uploadedFile->storeAs($folder, $name.'.'.$uploadedFile->getClientOriginalExtension(), $disk);
+
+        return $file;
+    }
+
 
     public function postAddFood(Request $request)
     {
         $this->validate($request, [
             'name' => 'required|regex:/^\D{2,}$/',
-            'description' => 'required|regex:/^\w{10,}$/',
-            'cuisine' => 'required|regex:/^\w{5,}$/',
-            'type' => 'required|regex:/^\w{3,}$/',
-            'price' => 'required|/^UZS [1-9][0-9]{0,2}(,[0-9]{3})*\.[0-9]{2}$/',
+            'description' => 'required|regex:/^\w{10,}$/'
+            
         ]);
+        $request->photo_path->store('images/food','public');
+
         $food = new Food ([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
-            'cuisine' => $request->input('cuisine'),
-            'type' => $request->input('type'),
+            'type_id' => $request->input('type_id'),
+            'cuisine_id' => $request->input('cuisine_id'),
             'price' => $request->input('price'),
+            'photo_path' => $request->photo_path->getClientOriginalName()
         ]);
         $food->save();
-        $cuisines = Cuisine::all();
-        return redirect()->route('mainPage.index')->with('info', 'Food created: ' . $request->input('name'));
+        
+        return redirect()->route('mainIndex')->with('info', 'Food created: ' . $request->input('name'));
     }
+
+
+
 
     public function populateCuisines()
     {
