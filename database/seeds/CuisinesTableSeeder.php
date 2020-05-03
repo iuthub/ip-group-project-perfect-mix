@@ -11,7 +11,7 @@ class CuisinesTableSeeder extends Seeder
      */
     public function run()
     {
-         $cuisine = new Cuisine([
+        $cuisine = new Cuisine([
             'name' => 'Uzbek'
         ]);
         $cuisine->save();
