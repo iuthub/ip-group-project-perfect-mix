@@ -27,15 +27,7 @@ Route::get('/edit', [
 	'as' => 'userInfoEdit'
 ]);
 
-Route::get('/addFood', [
-    'uses' => 'PostsController@getAddFood',
-    'as' => 'food.addFood'
-]);
 
-Route::post('/addFood', [
-    'uses' => 'PostsController@postAddFood',
-    'as' => 'food.addFood'
-]);
 
 // Route::get('login/', function () {
 //     return view('auth.login');
@@ -52,16 +44,7 @@ Route::group([
 		'as'=> 'dashboardIndex'
 	]);
 
-	// Route::get('/edit/{id}', [
-	// 	'uses' => 'TaskController@getAdminEdit',
-	// 	'as' => 'adminEdit'
-	// ]);
-
-
-	// Route::post('/edit', [
-	// 	'uses' => 'TaskController@postAdminEdit',
-	// 	'as' => 'adminEditPost'
-	// ]);
+	
 
 
 	// Route::get('/create', [
@@ -78,6 +61,33 @@ Route::group([
 	// 	'uses' => 'TaskController@getAdminDelete',
 	// 	'as' => 'adminDelete'
 	// ]);
+
+
+	//Food routes
+	Route::get('/addFood', [
+    	'uses' => 'FoodsController@getAddFood',
+    	'as' => 'addGetFood'
+	]);
+
+	Route::post('/addFood', [
+    	'uses' => 'FoodsController@postAddFood',
+    	'as' => 'addPostFood'
+	]);
+
+	Route::get('/editFood/{id}', [
+		'uses' => 'FoodsController@getEditFood',
+		'as' => 'editGetFood'
+	]);
+
+	Route::post('/editFood', [
+		'uses' => 'FoodsController@postEditFood',
+		'as' => 'editPostFood'
+	]);
+
+	Route::get('/deleteFood/{id}', [
+		'uses' => 'FoodsController@getDeleteFood',
+		'as' => 'deletePostFood'
+	]);
 
 		
 });
