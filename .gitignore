@@ -12,3 +12,8 @@ npm-debug.log
 yarn-error.log
 .idea
 /.idea
+.idea/vcs.xml
+.idea/php.xml
+.idea/modules.xml
+.idea/misc.xml
+.idea/ip-group-project-perfect-mix.iml

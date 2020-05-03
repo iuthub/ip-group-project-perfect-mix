@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg custom-nav row">
+<nav class="navbar navbar-expand-lg custom-nav row wow fadeInDown">
     <div class="container">
         <a class="navbar-brand col-md-2 col-lg-2" href="#"><img src="assets/projectPhotos/logo.png" alt="logo"></a>
         <div class="collapse navbar-collapse col-md-10 col-lg-10" id="navbarText">

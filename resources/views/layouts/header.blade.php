@@ -13,7 +13,9 @@
     <link rel="stylesheet" href="{{ URL::to('css/styles.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/all.css') }}">
 	<link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ URL::to('css/animate.css') }}">
+    <link rel="shortcut icon" href="{{ URL::to('assets/icons/shortcut_icon.png') }}">
 </head>
 
 <body>
@@ -24,7 +26,8 @@
 	<script src="{{URL::to('js/all.min.js') }}"></script>
 	<script src="{{URL::to('js/bootstrap.min.js') }}"></script>
 	<script src="{{URL::to('js/bootstrap.js') }}"></script>
-	<script src="{{URL::to('js/lightbox.js') }}"></script>
+    <script src="{{URL::to('js/lightbox.js') }}"></script>
+    <script src="{{URL::to('js/wow.min.js') }}"></script>
 </body>
 
 </html>
