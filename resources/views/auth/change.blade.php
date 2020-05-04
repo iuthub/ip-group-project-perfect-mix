@@ -1,8 +1,6 @@
-@extends('layouts.fantasy')
-
+@extends('layouts.header')
 
 @extends('LoginNav.loginNav')
-
 
 @section('content')
 <div class="container" >
@@ -12,14 +10,20 @@
             <div class="card">
                 <div class="main">
                    <p class="sign" align="center">{{ __('Create New Account') }}</p>
+                    
                     <form method="POST" class="form1" action="">
-                        @csrf
+                          @csrf
+                        <div>
+                      
                           <div>
-                            {{-- <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-                           --}}
-                          <div>
-                              <input id="name" align="center" type="name" class="name 
-                              @error('name') is-invalid @enderror" placeholder="Name" name="name" value="{{ old('name') }}" required autofocus>
+                          <input id="name" align="center" 
+                          type="name" 
+                          class="name 
+                            @error('name') is-invalid @enderror" 
+                          placeholder="Name" 
+                          name="name" 
+                          value="{{ $user->full_name }}" 
+                          required autofocus>
 
                               @error('name')
                                   <span class="invalid-feedback" role="alert">

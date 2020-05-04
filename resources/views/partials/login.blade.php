@@ -12,10 +12,10 @@
                         @csrf
                         <h5><strong>Log</strong> into <span class="text-primary">Account</span></h5>
                         <div class="form-group" id="loginFormEmail">
-                            <input type="email" class="form-control" placeholder="Email" name="email" value="{{old('email')}}">
+                            <input type="email" class="form-control" placeholder="Email" name="email">
                         </div>
                         <div class="form-group" id="loginFormPassword">
-                            <input type="password" class="form-control" placeholder="Password" name="password" value="{{old('password')}}">
+                            <input type="password" class="form-control" placeholder="Password" name="password">
                         </div>
                         <button type="submit" class="btn btn-primary mb-2">Login</button>
                         @if (Route::has('password.request'))
