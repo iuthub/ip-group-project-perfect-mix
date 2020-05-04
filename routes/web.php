@@ -17,22 +17,10 @@ Route::get('/', [
 ]);
 
 
-Route::get('/table', [
-	'uses' => 'PostsController@table',
-	'as' => 'table'
-]);
-
-Route::get('/edit', [
-	'uses' => 'PostsController@adminInfoChange',
-	'as' => 'userInfoEdit'
-]);
-
-
-
-// Route::get('login/', function () {
-//     return view('auth.login');
-// })->name('auth.login');
-
+// Route::get('/table', [
+// 	'uses' => 'PostsController@table',
+// 	'as' => 'table'
+// ]);
 
 Route::group([
 	'prefix'=>'dashboard',
@@ -44,8 +32,30 @@ Route::group([
 		'as'=> 'dashboardIndex'
 	]);
 
+	Route::get('/edit', [
+		'uses' => 'PostsController@getUserEdit',
+		'as' => 'getUserEdit'
+	]);
 	
+	Route::post('/edit', [
+		'uses' => 'PostsController@postUserEdit',
+		'as' => 'postUserEdit'
+	]);
 
+	Route::get('/edit/{id}', [
+		'uses' => 'PostsController@getAdminUserEdit',
+		'as' => 'getAdminUserEdit'
+	]);
+
+	Route::post('/edit', [
+		'uses' => 'PostsController@postAdminUserEdit',
+		'as' => 'postAdminUserEdit'
+	]);
+
+	Route::get('/delete{id}', [
+		'uses' => 'PostsController@getAdminUserDelete',
+		'as' => 'getAdminUserDelete'
+	]);
 
 	// Route::get('/create', [
 	// 	'uses' => 'TaskController@getAdminCreate',
@@ -61,7 +71,6 @@ Route::group([
 	// 	'uses' => 'TaskController@getAdminDelete',
 	// 	'as' => 'adminDelete'
 	// ]);
-
 
 	//Food routes
 	Route::get('/addFood', [

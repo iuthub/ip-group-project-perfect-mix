@@ -18,7 +18,9 @@ class UsersTableSeeder extends Seeder
             'address'=>'Tashkent',
             'phone_number'=>'+998933926354',
             'password'=>Hash::make('jasur'),
+            'role_id' =>'3'
         ]);
+        $user->markEmailAsVerified();
         $user->save();
 
         $user = new User([
@@ -28,6 +30,7 @@ class UsersTableSeeder extends Seeder
             'phone_number'=>'+998955555555',
         	'password'=>Hash::make('alex'),
         ]);
+        $user->markEmailAsVerified();
         $user->save();
         
     }
