@@ -90,7 +90,6 @@ class PostsController extends Controller
 
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
         ]);
 
         $user = User::find($request->input('id'));
