@@ -1,5 +1,6 @@
 @extends('layouts.header')
 
+@include('partials.alerts')
 @include('partials.navbar')
 
 @section('content')
