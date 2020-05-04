@@ -7,8 +7,6 @@
                     @csrf
                     </form>
 
-
-
 <table>
 		<thead>
             <tr>
@@ -44,7 +42,6 @@
         </tbody>
 
 	</table>
-
 
 
 @endsection

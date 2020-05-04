@@ -22,7 +22,6 @@ Route::get('/', [
 // 	'as' => 'table'
 // ]);
 
-
 Route::group([
 	'prefix'=>'dashboard',
 	'middleware' => ['auth', 'verified']
@@ -72,7 +71,6 @@ Route::group([
 	// 	'uses' => 'TaskController@getAdminDelete',
 	// 	'as' => 'adminDelete'
 	// ]);
-
 
 	//Food routes
 	Route::get('/addFood', [
