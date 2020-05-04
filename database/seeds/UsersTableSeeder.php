@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'address'=>'Tashkent',
             'phone_number'=>'+998933926354',
             'password'=>Hash::make('jasur'),
+            'role_id' =>'3'
         ]);
         $user->markEmailAsVerified();
         $user->save();
