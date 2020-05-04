@@ -51,8 +51,7 @@ class PostsController extends Controller
         $user = Auth::user();
         
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'password' => ['required', 'string', 'min:8', 'confirmed']
+            'name' => ['required', 'string', 'max:255']
         ]);
         
         $user->full_name = $request->input('name');
@@ -60,7 +59,12 @@ class PostsController extends Controller
         $user->phone_number = $request->input('phone_number');
         if ($request->input('password')) {
             if($request->input('password')==$request->input('password_confirmation')){
+                $this->validate($request, [
+                    'password' => ['required', 'string', 'min:8', 'confirmed']
+                ]);
                 $user->password = Hash::make($request->input('password'));
+
+            }
             else{
                 return redirect()->back()->with([
                     'errors'=>'Password does not match'
@@ -98,6 +102,9 @@ class PostsController extends Controller
         $user->address = $request->input('address');
         $user->phone_number = $request->input('phone_number');
         if ($request->input('password')) {
+            $this->validate($request, [
+                    'password' => ['required', 'string', 'min:8', 'confirmed']
+                ]);
             $user->password = Hash::make($request->input('password'));    
         }
         $user->vaucher_id = ($request->input('vaucher_id'))?$request->input('vaucher_id'):$user->vaucher_id;
