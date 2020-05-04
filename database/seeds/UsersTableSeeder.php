@@ -12,7 +12,6 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-
         $user = new User([
             'full_name'=>'Jasur Makhsudov',
             'email'=>'j.makhsudov@student.inha.uz',

@@ -17,7 +17,7 @@ class CreateFoodsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->longText('description');
-            $table->string('type');
+            $table->unsignedInteger('type_id');
             $table->unsignedInteger('cuisine_id');
             $table->float('price');
             $table->string('photo_path');

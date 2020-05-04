@@ -1,6 +1,8 @@
 @extends('layouts.fantasy')
 
+
 @extends('LoginNav.loginNav')
+
 
 @section('content')
 <div class="container" >
@@ -9,20 +11,15 @@
 
             <div class="card">
                 <div class="main">
-                   <p class="sign" align="center">{{ __('Edit Profile') }}</p>
-                    
-                    <form method="POST" class="form1" action="{{ url('/edit') }}">
-                          @csrf
-                        <div>
-                      
+                   <p class="sign" align="center">{{ __('Create New Account') }}</p>
+                    <form method="POST" class="form1" action="">
+                        @csrf
                           <div>
-                          <input id="name" align="center" 
-                          type="name" 
-                          class="name"
-                          placeholder="Name" 
-                          name="name" 
-                          value="{{ $user->full_name }}" 
-                          required autofocus>
+                            {{-- <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                           --}}
+                          <div>
+                              <input id="name" align="center" type="name" class="name 
+                              @error('name') is-invalid @enderror" placeholder="Name" name="name" value="{{ old('name') }}" required autofocus>
 
                               @error('name')
                                   <span class="invalid-feedback" role="alert">
@@ -32,13 +29,7 @@
                           </div>
 
                             <div >
-                                <input id="email" align="center" 
-                                type="email" 
-                                class="name" 
-                                placeholder="Email" 
-                                name="email" 
-                                value="{{ $user->email }}" 
-                                required autocomplete="email" autofocus>
+                                <input id="email" align="center" type="email" class="un @error('email') is-invalid @enderror" placeholder="Email" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -48,13 +39,7 @@
                             </div>
 
                             <div >
-                                <input id="phone_number" align="center" 
-                                type="" 
-                                class="name" 
-                                placeholder="Email" 
-                                name="phone_number" 
-                                value="{{ $user->phone_number }}" 
-                                required autocomplete="phone_number" autofocus>
+                                <input id="phone_number" align="center" type="" class="un @error('email') is-invalid @enderror" placeholder="Email" name="phone_number" value="{{ old('email') }}" required autocomplete="phone_number" autofocus>
 
                                 @error('phone_number')
                                     <span class="invalid-feedback" role="alert">
@@ -81,7 +66,12 @@
                                         <input id="password-confirm" type="password" class="passwordConfirm" name="password_confirmation" required>
                                     </div>
 
-                            
+                            <div>
+                              <button class="submit" align="center">{{'Sign Up'}}</button>
+
+
+                                 <p class="register" align="center"><a href="#">  {{ __('Log In') }}</p>
+                            </div>
 
                     </form>
 
