@@ -26,15 +26,14 @@ class FoodsController extends Controller
         ]);
 		
 
-        $request->photo_path->storeAs('images/food','public');
-
+        $photo = $request->photo_path->store('images/food','public');
         $food = new Food ([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'type_id' => $request->input('type_id'),
             'cuisine_id' => $request->input('cuisine_id'),
             'price' => $request->input('price'),
-            'photo_path' => $request->photo_path->getClientOriginalName()
+            'photo_path' => $photo
         ]);
         $food->save();
         
@@ -53,12 +52,36 @@ class FoodsController extends Controller
 
     }
 
-    public function postEditFood(){
-    	
+    public function postEditFood(Request $request){
+    	$this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+        ]);
+       	
+        $food = Food::find($request->input('id'));
+        $food->name = $request->input('name');
+        $food->description = $request->input('description');
+        $food->type_id = ($request->input('type_id'))?$request->input('type_id'):$food->type_id;
+        $food->cuisine_id = ($request->input('cuisine_id'))?$request->input('cuisine_id'):$food->cuisine_id;
+        $food->price = $request->input('price');
+        if($request->photo_path){
+ 			$photo = $request->photo_path->store('images/food','public');        	
+        	$food->photo_path = $photo;
+		}
+
+        $food->save();
+        
+        return redirect()->route('dashboardIndex')->with([
+            'info'=>'Successfully updated!']);
     }
 
-    public function getDeleteFood(){
-    	
+    public function getDeleteFood($id){
+    	$food = Food::find($id);
+        
+        $food->delete();
+
+        return redirect()->route('dashboardIndex')->with([
+            'info'=>'Successfully deleted!'
+        ]);
     }
 
 
