@@ -46,7 +46,6 @@
             </div>
             {{ csrf_field() }}
                 
-
             <input type="hidden" name="id" value="{{ $food->id }}">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

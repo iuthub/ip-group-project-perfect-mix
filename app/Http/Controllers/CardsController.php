@@ -11,10 +11,10 @@ class CardsController extends Controller
     	return view('card');
     }
 
-    public function addToCart($id)
+    public function addToCart(Request $request)
     {
-
-        $food = Food::find($id);
+    	$id=$request->input('id');
+        $food = Food::find($request->input('id'));
  
         if(!$food) {
  
@@ -30,7 +30,7 @@ class CardsController extends Controller
             $cart = [
                     $id => [
                         "name" => $food->name,
-                        "quantity" => 1,
+                        "quantity" => $request->input('quantity'),
                         "price" => $food->price,
                         "photo" => $food->photo_path
                     ]
@@ -43,8 +43,7 @@ class CardsController extends Controller
  
         // if cart not empty then check if this product exist then increment quantity
         if(isset($cart[$id])) {
- 
-            $cart[$id]['quantity']++;
+            $cart[$id]['quantity']=$cart[$id]['quantity']+$request->input('quantity');
  
             session()->put('cart', $cart);
  
@@ -55,7 +54,7 @@ class CardsController extends Controller
         // if item not exist in cart then add to cart with quantity = 1
         $cart[$id] = [
             "name" => $food->name,
-            "quantity" => 1,
+            "quantity" => $request->input('quantity'),
             "price" => $food->price,
             "photo" => $food->photo_path
         ];
@@ -80,7 +79,7 @@ class CardsController extends Controller
         }
     }
  
-    public function remove(Request $request)
+    public function delete(Request $request)
     {
         if($request->id) {
  
