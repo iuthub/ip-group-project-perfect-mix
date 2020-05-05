@@ -37,19 +37,17 @@
                 <label for="title">Price</label>
                 <input type="text" class="form-control" id="price" name="price" value=" {{ $food->price }}">
             </div>
+
+            {{-- upload file https://plugins.krajee.com/file-avatar-upload-demo --}}
             <div class="form-group">
                 <label for="content">Photo</label>
-                <img src="{{URL::to('images/food')}}/{{$food->photo_path }}}}">
-                <input type="file" class="form-control" id="photo_path" name="photo_path" value="">
+                <img style="width: 200px;" src="{{URL::to($food->photo_path) }}">
+                <input type="file" class="form-control" id="photo_path" name="photo_path">
             </div>
-{{--            @foreach($tags as $tag)
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" name="tags[]" value="{{ $tag->id }}"> {{ $tag->name }}
-                    </label>
-                </div>
-            @endforeach--}}
             {{ csrf_field() }}
+                
+
+            <input type="hidden" name="id" value="{{ $food->id }}">
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>

@@ -11,6 +11,8 @@
 |
 */
 
+
+
 Route::get('/', [
 	'uses' => 'PostsController@getIndex',
 	'as' => 'mainIndex'
@@ -57,47 +59,54 @@ Route::group([
 		'as' => 'getAdminUserDelete'
 	]);
 
-	// Route::get('/create', [
-	// 	'uses' => 'TaskController@getAdminCreate',
-	// 	'as' => 'adminCreate'
-	// ]);
-
-	// Route::post('/create', [
-	// 	'uses' => 'TaskController@postAdminCreate',
-	// 	'as' => 'adminCreatePost'
-	// ]);
-
-	// Route::get('/delete/{id}', [
-	// 	'uses' => 'TaskController@getAdminDelete',
-	// 	'as' => 'adminDelete'
-	// ]);
+	
 
 	//Food routes
-	Route::get('/addFood', [
+	Route::get('/food/add', [
     	'uses' => 'FoodsController@getAddFood',
     	'as' => 'addGetFood'
 	]);
 
-	Route::post('/addFood', [
+	Route::post('/food/add', [
     	'uses' => 'FoodsController@postAddFood',
     	'as' => 'addPostFood'
 	]);
 
-	Route::get('/editFood/{id}', [
+	Route::get('/food/edit/{id}', [
 		'uses' => 'FoodsController@getEditFood',
 		'as' => 'editGetFood'
 	]);
 
-	Route::post('/editFood', [
+	Route::post('/food/edit/', [
 		'uses' => 'FoodsController@postEditFood',
 		'as' => 'editPostFood'
 	]);
 
-	Route::get('/deleteFood/{id}', [
+	Route::get('/food/delete/{id}', [
 		'uses' => 'FoodsController@getDeleteFood',
 		'as' => 'deletePostFood'
 	]);
 
+
+	Route::get('/card', [
+		'uses' => 'CardsController@getCard',
+		'as' => 'getCard'
+	]);
+
+	Route::get('cart', 'CardsController@cart');
+ 	
+ 	Route::get('/addcard/{id}', [
+		'uses' => 'CardsController@addToCart',
+		'as' => 'addCard'
+	]);
+	
+	Route::patch('update-cart', 'CardsController@update');
+ 
+	Route::delete('remove-from-cart', 'CardsController@remove');
+
+	//Route::get('/', 'CardsController@index');
+ 
+	
 		
 });
 
