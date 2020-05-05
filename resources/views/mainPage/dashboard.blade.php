@@ -181,5 +181,15 @@
     <!-- Edit Profile Modal -->
 	@include('partials.edit')
     <!-- Footer -->
-	@include('partials.footer')
+    @include('partials.footer')
+
+    @section('script')
+    <script src="{{URL::to('js/jquery.countTo.js') }}"></script>
+    <script src="{{URL::to('js/waypoints.min.js') }}"></script>
+    <script>
+        $(".timer").waypoint(function(){
+        $(this).countTo()
+        },{triggerOnce:!0,offset:'90%'});
+    </script>
+    @endsection
 @endsection
