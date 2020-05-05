@@ -465,3 +465,130 @@ footer img.right {
 	font-weight:bold;
 	font-size:1.3em;
 }
+
+/* User Dashboard */
+.dashboard-header {
+  height: 50%;
+  color: #fff;
+  text-align: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/assets/img/food-order-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+
+.dashboard-header .title {
+  font-weight: lighter;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.dashboard-header .title h3 {
+  font: normal 2em 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+.user-info{
+  margin: 3em 0 3em 0;
+}
+.user-info .avatar{
+  color:rgb(165, 165, 165);
+}
+.user-info .info-content .name{
+  text-transform: uppercase;
+  color:#0047b3;
+  font-weight: bold;
+  border-bottom:3px dashed rgb(226, 216, 216);
+}
+.user-info .info-content .row{
+  height:100%;
+}
+.user-info .info-content .row div:last-child{
+  border:1px solid rgb(226, 216, 216);
+  width:100%;
+}
+.user-info .status-container .btn-edit-profile{
+  text-transform: uppercase;
+  font-weight:bold;
+  color:#003d99;
+  font-size:0.9em;
+  background:rgb(236, 250, 255);
+  max-width:50%;
+  margin: auto;
+  transition:background 500ms;
+}
+.user-info .status-container .btn-edit-profile:hover{
+  background:rgb(207, 242, 255);
+}
+.user-info .status-container .vaucher{
+  max-width:80%;
+  margin:auto;
+  border-radius:15px;
+  padding: 1em 0.5em 1em 0.5em;
+}
+.user-info .status-container .vaucher .type{
+  font-weight:bold;
+  color:red;
+}
+.user-info .status-container .vaucher .value{
+  color:blue !important;
+  font-weight:bold;
+  font-style: italic;
+}
+.statistics{
+  margin-bottom: 2em;
+}
+.statistics .item{
+  border-radius: 5px;
+  padding: 0.5em 1em 0.5em 1.5em;
+  font-weight:bold;
+  color:white;
+  position:relative;
+}
+.statistics .item .custom-i{
+  position: absolute;
+  right:10%;
+  top:50%;
+  transform: translateY(-50%);
+}
+.statistics .item .title{
+  font-weight: normal;
+}
+#total-orders {
+  background: rgb(15, 64, 255);
+  background: -moz-linear-gradient(214deg, rgba(15, 64, 255, 1) 41%, rgba(108, 114, 255, 1) 100%);
+  background: -webkit-linear-gradient(214deg, rgba(15, 64, 255, 1) 41%, rgba(108, 114, 255, 1) 100%);
+  background: linear-gradient(214deg, rgba(15, 64, 255, 1) 41%, rgba(108, 114, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0f40ff", endColorstr="#6c72ff", GradientType=1);
+}
+#total-expenses {
+  background: rgb(255, 15, 222);
+  background: -moz-linear-gradient(214deg, rgba(255, 15, 222, 1) 41%, rgba(255, 108, 240, 1) 100%);
+  background: -webkit-linear-gradient(214deg, rgba(255, 15, 222, 1) 41%, rgba(255, 108, 240, 1) 100%);
+  background: linear-gradient(214deg, rgba(255, 15, 222, 1) 41%, rgba(255, 108, 240, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ff0fde", endColorstr="#ff6cf0", GradientType=1);
+}
+.history{
+  margin-bottom:5em;
+}
+.history .item{
+  margin-bottom:1em !important;
+  background: #e6f9ff;
+  border-radius: 10px;
+}
+.history .item img{
+  width:100%;
+  height:100%;
+}
+.history .item .right{
+  border-left:1px solid black;
+}
+.history .item .item-content{
+  padding-top:0.5em;
+  padding-right:5em;
+}
+.history .item .item-content span{
+  position:absolute;
+  right:5%;
+  bottom:10%;
+}
