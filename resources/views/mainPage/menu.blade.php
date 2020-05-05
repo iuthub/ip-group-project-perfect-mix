@@ -2,6 +2,12 @@
 
 @include('partials.navbar')
 
+@section('style')
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
+    </style>
+@endsection
+
 @section('content')
 <section class="menu-header position-relative">
         <h3 class="title">Our Menu</h3>
