@@ -18,12 +18,6 @@ Route::get('/', [
 	'as' => 'mainIndex'
 ]);
 
-
-// Route::get('/table', [
-// 	'uses' => 'PostsController@table',
-// 	'as' => 'table'
-// ]);
-
 Route::group([
 	'prefix'=>'dashboard',
 	'middleware' => ['auth', 'verified']
@@ -88,29 +82,27 @@ Route::group([
 	]);
 
 
+	//card
 	Route::get('/card', [
 		'uses' => 'CardsController@getCard',
 		'as' => 'getCard'
 	]);
 
-	Route::get('cart', 'CardsController@cart');
- 	
- 	Route::get('/addcard/{id}', [
+ 	Route::post('/addtocard', [
 		'uses' => 'CardsController@addToCart',
-		'as' => 'addCard'
+		'as' => 'addToCard'
+	]);
+
+ 	Route::post('/update', [
+		'uses' => 'CardsController@update',
+		'as' => 'addToCardUpdate'
+	]);
+
+ 	Route::post('/delete', [
+		'uses' => 'CardsController@delete',
+		'as' => 'addToCardDelete'
 	]);
 	
-	Route::patch('update-cart', 'CardsController@update');
- 
-	Route::delete('remove-from-cart', 'CardsController@remove');
-
-	//Route::get('/', 'CardsController@index');
- 
-	
-		
 });
 
-
 Auth::routes(['verify'=>true]);
-
-Auth::routes();
