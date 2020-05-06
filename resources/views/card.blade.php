@@ -6,8 +6,8 @@
  
 <div class="container page">
     
-
-    
+<form action="{{ route('checkoutOrder') }}" method="post">
+    @csrf
        <table id="cart" class="table table-hover table-condensed">
             <thead>
             <tr>
@@ -18,9 +18,9 @@
                 <th style="width:10%"></th>
             </tr>
             </thead>
-        
+
         <tbody>
- 
+
         <?php $total = 0 ?>
         @if(session('cart'))
             @foreach(session('cart') as $id => $details)
@@ -66,7 +66,7 @@
         </tr>
         </tfoot>
     </table>
- 
+ </form>
 
 
 

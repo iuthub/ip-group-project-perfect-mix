@@ -4,10 +4,10 @@
     </div>
     <div class="row m-0">
         <div class="col-md-4 col-lg-4 position-relative">
-            <img src="assets/projectPhotos/limonPattern_left.png" alt="" class="left wow fadeInLeft">
+            <img src="{{URL::to('assets/projectPhotos/limonPattern_left.png')}}" alt="" class="left wow fadeInLeft">
         </div>
         <div class="col-md-4 col-lg-4 container">
-            <h1 class="fantasy text-center"><a href="#"> <img src="assets/projectPhotos/logo.png" alt="logo"></a></h1>
+            <h1 class="fantasy text-center"><a href="#"> <img src="{{URL::to('assets/projectPhotos/logo.png')}}" alt="logo"></a></h1>
             <div class="contact">
                 <ul class="list-unstyled">
                     <li class="contact-item">
@@ -26,7 +26,7 @@
             </div>
         </div>
         <div class="col-md-4 col-lg-4 position-relative">
-            <img src="assets/projectPhotos/limonPattern_right.png" alt="" class="right wow fadeInRight">
+            <img src="{{URL::to('assets/projectPhotos/limonPattern_right.png')}}" alt="" class="right wow fadeInRight">
         </div>
     </div>
 </footer>

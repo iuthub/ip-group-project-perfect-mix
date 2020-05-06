@@ -16,6 +16,17 @@ class FoodsController extends Controller
         return view('food.addFood', ['cuisines'=>$cuisines , 'food_types'=>$food_types]);
     }
 
+    public function getMenuIndex(){
+        $foods = Food::all();
+        $food_types = FoodType::all();
+        $cuisines = Cuisine::all();
+        
+        return view('mainPage.menu',
+            ['foods'=>$foods, 
+            'cuisines'=>$cuisines,
+            'food_types'=>$food_types]);
+    }
+
     public function postAddFood(Request $request)
     {
     	//validation

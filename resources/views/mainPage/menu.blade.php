@@ -2,193 +2,96 @@
 
 @include('partials.navbar')
 
-@section('style')
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Rye&display=swap');
-    </style>
-@endsection
-
 @section('content')
+
 <section class="menu-header position-relative">
         <h3 class="title">Our Menu</h3>
         <div class="hero-footer-image">
-            <img src="assets/projectPhotos/ink white.png" alt="">
+            <img src="{{URL::to('assets/projectPhotos/ink white.png')}}" alt="">
         </div>
     </section>
 
     <div class="container">
         <section class="section-cuisine fadeInUp mt-5" data-wow-duration="1s" data-wow-delay="300ms">
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="cuisine cuisine-uzb">
-                        <div class="overlay text-center">
-                            <span>Uzbek</span>
+                
+                @foreach($cuisines as $cuisine)
+                    <div class="col-md-3 col-sm-6 mb-3">
+                        <div class="cuisine" 
+                        style="background: url({{URL::to($cuisine->photo_path)}}) no-repeat center;background-size: cover;">
+                            <div class="overlay text-center">
+                                <span>{{$cuisine->name}}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="cuisine cuisine-eu">
-                        <div class="overlay text-center">
-                            <span>European</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="cuisine cuisine-china">
-                        <div class="overlay text-center">
-                            <span>Chinese</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="cuisine cuisine-italy">
-                        <div class="overlay text-center">
-                            <span>Italian</span>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
         </section>
 
         <section class="food-types">
             <div class="row">
-                <div class="col-md-3 col-lg-3 col-sm-6 mt-3">
-                    <div class="item text-center traditional">
-                        <span>Traditional</span>
+                @foreach($food_types as $food_type)
+                    <div class="col-md-3 col-lg-3 col-sm-6 mt-3">
+                        <div class="item text-center" style="background: url({{URL::to($food_type->photo_path)}}) no-repeat center;background-size: cover;">
+                            <span>{{$food_type->name}}</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 col-lg-3 col-sm-6 mt-3">
-                    <div class="item text-center salad">
-                        <span>Salad</span>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 col-sm-6 mt-3">
-                    <div class="item text-center fish">
-                        <span>Fish</span>
-                    </div>
-                </div>
-                <div class="col-md-3 col-lg-3 col-sm-6 mt-3">
-                    <div class="item text-center soup">
-                        <span>Soup</span>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </section>
 
         <section class="foods">
             <h2 class="title text-center">Traditional foods</h2>
             <div class="row">
+
+            @foreach($foods as $food)
                 <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="card">
-                            <img class="card-img-top" src="assets/img/Food/manti.jpg" alt="Card image cap">
+                            
+                            <img class="card-img-top" src="{{URL::to($food->photo_path)}}" alt="Card image cap">
                             <div class="card-body">
-                                <h4 class="card-title text-left">Manti</h4>
-                                <p class="content">Go'sht, Piyoz, Un, Tuz, Suv</p>
-                                <div class="row">
-                                    <p class="col-md-6 price">4000 sum</p>
-                                    <p class="col-md-6 text-right">
-                                        <input type="number" name="quantity" value='1' min='1' class="quantity">
-                                    </p>
-                                </div>
-                                <a href="#" class="btn order-btn">Order</a>
+                                <form method="POST" action="{{ route('addToCard') }}">
+                                    @csrf
+                                    <h4 class="card-title text-left">{{$food->name}}</h4>
+                                    <p class="content">{{$food->description}}</p>
+                                    <div class="row">
+                                        <p class="col-md-6 price">{{$food->price}} sum</p>
+                                        <p class="col-md-6 text-right">
+                                            <input type="number" name="quantity" value='1' min='1' class="quantity">
+                                        </p>
+                                    </div>
+                                    {{-- <button class="submit" class="btn order-btn" align="center">Order</button> --}}
+                                    <input type="hidden" name="id" value="{{ $food->id }}">
+                                    <button type="submit" class="btn order-btn add-cart">Order</button>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                    <div class="item">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Food/manti.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title text-left">Manti</h4>
-                                <p class="content">Go'sht, Piyoz, Un, Tuz, Suv</p>
-                                <div class="row">
-                                    <p class="col-md-6 price">4000 sum</p>
-                                    <p class="col-md-6 text-right">
-                                        <input type="number" name="quantity" value='1' min='1' class="quantity">
-                                    </p>
-                                </div>
-                                <a href="#" class="btn order-btn">Order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                    <div class="item">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Food/manti.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title text-left">Manti</h4>
-                                <p class="content">Go'sht, Piyoz, Un, Tuz, Suv</p>
-                                <div class="row">
-                                    <p class="col-md-6 price">4000 sum</p>
-                                    <p class="col-md-6 text-right">
-                                        <input type="number" name="quantity" value='1' min='1' class="quantity">
-                                    </p>
-                                </div>
-                                <a href="#" class="btn order-btn">Order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                    <div class="item">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Food/manti.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title text-left">Manti</h4>
-                                <p class="content">Go'sht, Piyoz, Un, Tuz, Suv</p>
-                                <div class="row">
-                                    <p class="col-md-6 price">4000 sum</p>
-                                    <p class="col-md-6 text-right">
-                                        <input type="number" name="quantity" value='1' min='1' class="quantity">
-                                    </p>
-                                </div>
-                                <a href="#" class="btn order-btn">Order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                    <div class="item">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Food/manti.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title text-left">Manti</h4>
-                                <p class="content">Go'sht, Piyoz, Un, Tuz, Suv</p>
-                                <div class="row">
-                                    <p class="col-md-6 price">4000 sum</p>
-                                    <p class="col-md-6 text-right">
-                                        <input type="number" name="quantity" value='1' min='1' class="quantity">
-                                    </p>
-                                </div>
-                                <a href="#" class="btn order-btn">Order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
-                    <div class="item">
-                        <div class="card">
-                            <img class="card-img-top" src="assets/img/Food/manti.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h4 class="card-title text-left">Manti</h4>
-                                <p class="content">Go'sht, Piyoz, Un, Tuz, Suv</p>
-                                <div class="row">
-                                    <p class="col-md-6 price">4000 sum</p>
-                                    <p class="col-md-6 text-right">
-                                        <input type="number" name="quantity" value='1' min='1' class="quantity">
-                                    </p>
-                                </div>
-                                <a href="#" class="btn order-btn">Order</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </section>
     </div>
+
+<script type="text/javascript">
+ 
+        $(".add-cart").click(function (e) {
+           e.preventDefault();
+ 
+           var ele = $(this);
+ 
+            $.ajax({
+               url: '{{ route('addToCard') }}',
+               method: "post",
+               data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
+               success: function (response) {
+                   window.location.reload();
+               }
+            });
+        });
+</script>
+
 
     <!-- Login Modal -->
 	@include('partials.login')

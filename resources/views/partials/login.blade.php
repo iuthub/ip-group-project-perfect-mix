@@ -25,7 +25,7 @@
                         @endif
                     </form>
                 </div>
-                <img src="assets/projectPhotos/ice-tea.png" alt="" class="login-bg">
+                <img src="{{URL::to('assets/projectPhotos/ice-tea.png')}}" alt="" class="login-bg">
             </div>
         </div>
     </div>

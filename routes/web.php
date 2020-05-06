@@ -28,6 +28,11 @@ Route::group([
 		'as'=> 'dashboardIndex'
 	]);
 
+	Route::get('/menu', [
+		'uses' => 'FoodsController@getMenuIndex',
+		'as'=> 'menuIndex'
+	]);
+
 	Route::get('/edit', [
 		'uses' => 'PostsController@getUserEdit',
 		'as' => 'getUserEdit'
@@ -103,6 +108,14 @@ Route::group([
 		'as' => 'addToCardDelete'
 	]);
 	
+
+ 	//checkout
+ 	Route::post('/chekout', [
+		'uses' => 'CardsController@checkoutOrder',
+		'as' => 'checkoutOrder'
+	]);
+
+
 });
 
 Auth::routes(['verify'=>true]);

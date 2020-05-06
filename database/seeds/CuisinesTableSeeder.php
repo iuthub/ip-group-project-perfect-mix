@@ -12,22 +12,26 @@ class CuisinesTableSeeder extends Seeder
     public function run()
     {
         $cuisine = new Cuisine([
-            'name' => 'Uzbek'
+            'name' => 'Uzbek',
+            'photo_path' => 'assets/img/island.jpg'
         ]);
         $cuisine->save();
 
         $cuisine = new Cuisine([
-            'name' => 'European'
+            'name' => 'European',
+            'photo_path' => 'assets/img/island.jpg'
         ]);
         $cuisine->save();
 
         $cuisine = new Cuisine([
-            'name' => 'Chinese'
+            'name' => 'Chinese',
+            'photo_path' => 'assets/img/island.jpg'
         ]);
         $cuisine->save();
 
         $cuisine = new Cuisine([
-            'name' => 'Italian'
+            'name' => 'Italian',
+            'photo_path' => 'assets/img/island.jpg'
         ]);
         $cuisine->save();
     }

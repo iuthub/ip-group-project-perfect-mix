@@ -13,10 +13,11 @@ class DatabaseSeeder extends Seeder
     {
         
 
-        //$this->call(VauchersTableSeeder::class);
-        //$this->call(RolesTableSeeder::class);
-        //$this->call(CuisinesTableSeeder::class);
-        $this->call(FoodTypeTableSeeder::class);
+        // $this->call(VauchersTableSeeder::class);
+        // $this->call(RolesTableSeeder::class);
+        // $this->call(CuisinesTableSeeder::class);
+        // $this->call(FoodTypeTableSeeder::class);
+        $this->call(FoodTableSeeder::class);
         $this->call(UsersTableSeeder::class);
     }
 }
