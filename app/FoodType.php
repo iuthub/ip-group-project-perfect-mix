@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FoodType extends Model
 {
     protected $fillable = [
-        'name'
+        'name', 'photo_path'
     ];
 
     public $timestamps = false;

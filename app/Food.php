@@ -12,11 +12,11 @@ class Food extends Model
 
     public $timestamps = false;
 
-    public function order_process(){
+    public function orderprocess(){
         return $this->belongsTo('App\OrderProcess');
     }
 
-    public function order_history(){
+    public function orderhistory(){
         return $this->belongsTo('App\OrderHistory');
     }
 

@@ -16,6 +16,7 @@ class CreateCuisinesTable extends Migration
         Schema::create('cuisines', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('photo_path');
         });
     }
 

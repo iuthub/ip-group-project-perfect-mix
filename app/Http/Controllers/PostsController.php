@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use DB;
 use App\Cuisine;
 use App\Food;
 use App\FoodType;
 use App\User;
 use App\Role;
+use App\OrderHistory;
+use App\OrderProcess;
 use App\Vaucher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,8 +38,30 @@ class PostsController extends Controller
             }
         else 
             {
-                $foods = Food::all();
-                return view('user.index',['foods'=>$foods]);
+                $user = Auth::user();
+                // $userOrderProcess = OrderProcess::query()->where('user_id',
+                //  'LIKE', "%{$user->id}%")->get();
+
+                // $orderHistories = DB::table('order_histories')
+                // ->join('foods','foods.id','=','order_histories.food_id')
+                // ->select('foods.id','foods.name','foods.description','foods.photo_path','foods.price','order_histories.created_at','order_histories.quantity')
+                // ->orderBy('created_at','desc')
+                // ->where('order_histories.user_id',$user->id)
+                // ->paginate(5);
+
+                $orderHistories = DB::table('order_processes')
+                ->join('foods','foods.id','=','order_processes.food_id')
+                ->select('foods.id','foods.name','foods.description','foods.photo_path','foods.price','order_processes.created_at','order_processes.quantity')
+                ->orderBy('created_at','desc')
+                ->where('order_processes.user_id',$user->id)
+                ->get();
+
+                $countOrder = OrderProcess::query()->where('user_id',
+                  'LIKE', "%{$user->id}%")->count();
+
+                // $orderProcess = Food::query()->where('id',
+                //  'LIKE', "%{$userOrderProcess->food_id}%")->get();
+                return view('user.index',['user'=>$user,'orderHistories'=>$orderHistories,'countOrder'=>$countOrder]);
             }
     }
 

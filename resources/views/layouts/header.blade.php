@@ -16,7 +16,6 @@
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/animate.css') }}">
     <link rel="shortcut icon" href="{{ URL::to('assets/icons/shortcut_icon.png') }}">
-    @yield('style')
 </head>
 
 <body>
@@ -29,7 +28,6 @@
 	<script src="{{URL::to('js/bootstrap.js') }}"></script>
     <script src="{{URL::to('js/lightbox.js') }}"></script>
     <script src="{{URL::to('js/wow.min.js') }}"></script>
-    @yield('script')
 </body>
 
 </html>

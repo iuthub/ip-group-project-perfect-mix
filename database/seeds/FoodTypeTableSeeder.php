@@ -12,27 +12,32 @@ class FoodTypeTableSeeder extends Seeder
     public function run()
     {
         $food_type = new FoodType([
-            'name' => 'Shellfish'
+            'name' => 'Shellfish',
+            'photo_path' => 'assets/img/mountain.jpg'
         ]);
         $food_type->save();
 
         $food_type = new FoodType([
-            'name' => 'Seafood'
+            'name' => 'Seafood',
+            'photo_path' => 'assets/img/mountain.jpg'
         ]);
         $food_type->save();
 
         $food_type = new FoodType([
-            'name' => 'Soups'
+            'name' => 'Soups',
+            'photo_path' => 'assets/img/mountain.jpg'
         ]);
         $food_type->save();
 
         $food_type = new FoodType([
-            'name' => 'Sandwiches'
+            'name' => 'Sandwiches',
+            'photo_path' => 'assets/img/mountain.jpg'
         ]);
         $food_type->save();
 
 		$food_type = new FoodType([
-            'name' => 'Salads'
+            'name' => 'Salads',
+            'photo_path' => 'assets/img/mountain.jpg'
         ]);
         $food_type->save();
 
