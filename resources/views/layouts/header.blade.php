@@ -30,6 +30,30 @@
     <script src="{{URL::to('js/bootstrap.js') }}"></script>
     <script src="{{URL::to('js/lightbox.js') }}"></script>
     <script src="{{URL::to('js/wow.min.js') }}"></script>
+    <script>
+        var form = $('#tableOrderForm');
+		form.find('select').on('change', function() {
+			$.ajax({
+                type: "POST",
+                url: "url",
+                data: {
+                    'tableId': foodId,
+                    'csrfmiddlewaretoken': '{{csrf_token}}',
+                },
+                dataType: 'json',
+                success: function (response) {
+                    warnUser(response);
+                },
+			});
+			var parent = form.find('#tableHelp');
+			function warnUser(response){
+				$.each(response, function(){
+					var elem = "<span>" + this.from + "-" + this.to + "</span>";
+					parent.append(elem);
+				});
+			}
+		});
+    </script>
     @yield('script')
 </body>
 
