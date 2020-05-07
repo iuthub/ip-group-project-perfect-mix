@@ -28,7 +28,7 @@
             <input type="password" class="form-control" placeholder="New Confirm Password" name="password_confirmation" value="">
         </div>
 
-
+        
         @if(Auth::user()->role->name=='admin')
         <div class="form-group" id="loginFormEmail">
             <select class="form-control" id="role_id" name="role_id" required focus>

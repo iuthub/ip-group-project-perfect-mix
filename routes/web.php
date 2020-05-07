@@ -37,7 +37,7 @@ Route::group([
 		'uses' => 'PostsController@getUserEdit',
 		'as' => 'getUserEdit'
 	]);
-
+	
 	Route::post('/edit', [
 		'uses' => 'PostsController@postUserEdit',
 		'as' => 'postUserEdit'
@@ -58,7 +58,6 @@ Route::group([
 		'as' => 'getAdminUserDelete'
 	]);
 
-
 	Route::get('/user', [
     	'uses' => 'PostsController@getUser',
     	'as' => 'getUsers'
@@ -73,7 +72,6 @@ Route::group([
     	'uses' => 'PostsController@postAddUser',
     	'as' => 'postAddUser'
 	]);
-
 
 	//Food routes
 	Route::get('/food', [
@@ -147,7 +145,7 @@ Route::group([
 		'uses' => 'CardsController@delete',
 		'as' => 'addToCardDelete'
 	]);
-
+	
  	//checkout
  	Route::post('/chekout', [
 		'uses' => 'CardsController@checkoutOrder',

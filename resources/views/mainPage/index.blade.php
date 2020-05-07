@@ -73,10 +73,8 @@
 	</div>
 
 	@include('partials.login')
-
-    @include('partials.registration')
-
-    @include('partials.tableOrder')
+	
+	@include('partials.registration')
 
 	@include('partials.footer')
 

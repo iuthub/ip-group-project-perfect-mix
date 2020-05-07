@@ -37,7 +37,9 @@
                         Edit profile
                     </a>
                     <div class="col-12 status mt-2">
-                        <div class="vaucher" style="background-image: url({{URL::to('/assets/img/status-gold.jpg')}}); background-size:cover;">
+                        <div class="vaucher" 
+                        {{-- style="background-image: url({{URL::to('/assets/img/status-gold.jpg')}}); background-size:cover;" --}}
+                        >
                             <h3 class="type text-center text-uppercase">{{$user->vaucher->name}}</h3>
                             <p class="value text-danger text-center">{{$user->vaucher->value}}% off for any order</p>
                         </div>
@@ -88,7 +90,7 @@
                             <p>{{$orderHistories[$i]->description}}</p>
                             <p>Quantity: {{$orderHistories[$i]->quantity}}</p>
                             
-                            <span class="badge badge-danger p-2 price">{{$orderHistories[$i]->price}}</span>
+                            <span class="badge badge-danger p-2 price">${{$orderHistories[$i]->price}}</span>
                         </div>
                         <div class="col-md-3 p-2 text-center right">
                             <div class="date p-3">
