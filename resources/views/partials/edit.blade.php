@@ -11,9 +11,13 @@
             </div>
             <div class="modal-body">
                 <form method="POST" action="{{ route('postAdminUserEdit') }}">
+                    @csrf
                     <h5 class="text-center text-primary"><strong>Edit your info</strong></h5>
                     <div class="form-group" id="editFormName">
                         <input type="text" class="form-control" name="name" value="{{$user->full_name}}">
+                    </div>
+                    <div class="form-group" id="loginFormEmail">
+                        <input type="address" class="form-control" placeholder="Address" name="address" value="{{$user->address}}">
                     </div>
                     <div class="form-group" id="editFormEmail">
                         <input type="email" class="form-control" placeholder="Email" name="email" value="{{$user->email}}" disabled>

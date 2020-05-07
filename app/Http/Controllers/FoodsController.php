@@ -28,7 +28,7 @@ class FoodsController extends Controller
     }
 
     public function getMenuIndex(){
-        $foods = Food::all();
+        $foods = Food::orderBy('type_id','desc')->get();;
         $food_types = FoodType::all();
         $cuisines = Cuisine::all();
         
