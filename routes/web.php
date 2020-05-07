@@ -108,7 +108,6 @@ Route::group([
 		'as' => 'addToCardDelete'
 	]);
 	
-
  	//checkout
  	Route::post('/chekout', [
 		'uses' => 'CardsController@checkoutOrder',
@@ -116,6 +115,9 @@ Route::group([
 	]);
 
 
+
+
 });
+
 
 Auth::routes(['verify'=>true]);

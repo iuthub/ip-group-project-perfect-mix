@@ -1,11 +1,8 @@
 @extends('layouts.header')
 
-@section('content')
+@include('partials.adminNav')
 
-<a class="nav-link" id="log-out"href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout </a>
-                    <form id="logout-form" action="{{ url('/logout') }}" method="POST">
-                    @csrf
-                    </form>
+@section('content')
 
 <h1 align="center">Users</h1>
 <table>
