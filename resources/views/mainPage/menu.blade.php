@@ -53,6 +53,7 @@
 
                             <img class="card-img-top" src="{{URL::to($food->photo_path)}}" alt="Card image cap">
                             <div class="card-body">
+
                                 <form method="POST" id="formfood" action="{{ route('addToCard') }}">
                                     @csrf
                                     <h4 class="card-title text-left food-name">{{$food->name}}</h4>
@@ -67,6 +68,22 @@
                                     <input type="hidden" name="id" value="{{ $food->id }}">
                                     <button type="submit" class="btn order-btn add-cart">Order</button>
                                 </form>
+
+<form method="POST" id="formfood" action="{{ route('addToCard') }}">
+    @csrf
+    <h4 class="card-title text-left">{{$food->name}}</h4>
+    <p class="content">{{$food->description}}</p>
+    <div class="row">
+        <p class="col-md-6 price">${{$food->price}}</p>
+        <p class="col-md-6 text-right">
+            <input type="number" name="quantity" value='1' min='1' class="quantity">
+        </p>
+    </div>
+    {{-- <button class="submit" class="btn order-btn" align="center">Order</button> --}}
+    <input type="hidden" name="id" value="{{ $food->id }}">
+    <button type="submit" class="btn order-btn add-cart">Order</button>
+</form>
+
                             </div>
                         </div>
                     </div>

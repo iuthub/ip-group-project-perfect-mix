@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/animate.css') }}">
-
     <link rel="shortcut icon" href="{{ URL::to('assets/icons/shortcut_icon.png') }}">
     @yield('style')
 </head>

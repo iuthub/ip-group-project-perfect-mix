@@ -21,6 +21,39 @@ class PostsController extends Controller
     	return view('mainPage.index');
     }
 
+    public function getUser()
+    {
+        $users = User::orderBy('full_name','desc')->get();
+        return view('admin.users', [
+             'users' => $users,
+        ]);
+    }
+
+    public function getAddUser(){
+        return view('admin.addUser');
+    }
+
+    public function postAddUser(Request $request)
+    {
+        //validation
+        $this->validate($request, [
+            'name' => 'required|regex:/^\D{2,}$/',
+            'address' => 'required'
+            
+        ]);
+        
+        $user = new User ([
+            'full_name' => $request->input('name'),
+            'address' => $request->input('address'),
+            'email' => $request->input('email'),
+            'phone_number' => $request->input('phone_number'),
+            'password' => Hash::make($request->input('password'))
+        ]);
+        $user->save();
+        
+        return redirect()->route('getUsers')->with('info', 'User added');
+    }
+
     public function getDashboardIndex(){
             
         if(Auth::user()->role->name=='admin'){
@@ -139,7 +172,7 @@ class PostsController extends Controller
         
         $user->save();
         
-        return redirect()->route('dashboardIndex')->with([
+        return redirect()->route('getUsers')->with([
             'info'=>'Successfully updated!']);
     }
 
@@ -148,7 +181,7 @@ class PostsController extends Controller
         
         $user->delete();
 
-        return redirect()->route('dashboardIndex')->with([
+        return redirect()->route('getUsers')->with([
             'info'=>'Successfully deleted!'
         ]);
     }   
