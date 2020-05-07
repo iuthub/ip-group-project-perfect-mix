@@ -51,7 +51,9 @@
                                 @endforeach
                                 @endif
                                 <div class="col-6 text-right">
+
                                     <span class="badge badge-danger">$ {{ $total }}</span>
+
                                 </div>
                             </div>
                         </div>
@@ -81,6 +83,7 @@
                             </div>
                             @endforeach
                             @endif
+                            
                             <a href="{{ route('getCard') }}" class="btn btn-success order-btn">Order</a>
                         </div>
                     </div>
