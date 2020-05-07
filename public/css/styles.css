@@ -61,6 +61,46 @@ html{
 	color:black;
 	cursor: pointer;
 }
+
+.custom-nav .dropdown-menu{
+            left:auto;
+            right:-50%;
+            width:400px;
+            max-height:60vh;
+            overflow-y: scroll;
+}
+.dropdown-menu .cart-view-header{
+    font-size:1em;
+    text-transform: uppercase;
+    font-weight:bold;
+    background:white;
+}
+.dropdown-menu .cart-item{
+    border-top:1px solid black;
+    padding: 0.3em 0 0.3em 0;
+}
+.dropdown-menu .cart-item .name {
+    font-weight:bold;
+    color: rgb(70, 70, 252);
+    font-size:1.3em;
+}
+.dropdown-menu .cart-item .price {
+    position:absolute;
+    right:0;
+    bottom:0;
+}
+
+.dropdown-menu .order-btn{
+  margin-left:50%;
+  transform: translateX(-50%);
+  width:50%;
+}
+
+.custom-na .dopdown-item.active,
+.dropdown-item:active{
+  background:white !important;
+}
+
 /*----------------
  	Hero Section
 ----------------*/
@@ -365,21 +405,6 @@ footer img.right {
 	transform:translateX(-50%);
 	font-weight:bold;
 }
-.food-types .traditional{
-	
-}
-.food-types .salad {
-	background: url(/assets/icons/salad.png) no-repeat center;
-	background-color: white;
-}
-.food-types .fish {
-	background: url(/assets/icons/fish.png) no-repeat center;
-	background-color: white;
-}
-.food-types .soup {
-	background: url(/assets/icons/hot-soup.png) no-repeat center;
-	background-color: white;
-}
 .foods{
 	margin: 7em 0 7em 0;
 }
@@ -577,4 +602,100 @@ footer img.right {
   position:absolute;
   right:5%;
   bottom:10%;
+  }
+
+/* Order Page */
+.order-header{
+  height: 50%;
+  color: #fff;
+  text-align: center;
+  background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+  url(/assets/img/food-order-bg.jpg) no-repeat center;
+  background-size: cover;
+}
+.order-header .title {
+  font-weight: lighter;
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.order-header .title h3{
+  font: normal 3em 'Montserrat', sans-serif;
+  text-transform: uppercase;
+}
+.order-content{
+  margin: 3em 0 3em 0 !important;  
+}
+.order-list .item{
+  margin-bottom:2.5em !important;
+}
+.order-list .item img{
+  height:90px;
+  width:90px;
+  position:absolute;
+  right:0;
+  transform: translateY(-20%);
+}
+.order-list .item .item-content{
+  border-bottom:1px solid rgb(214, 213, 213);
+  border-top:1px solid rgb(214, 213, 213);
+  padding:0.8em;
+}
+.order-list .item button{
+  font-size:1em;
+  color:black;
+  font-weight:bold;
+  border:none;
+  transition: background 0.5s, color 0.5s;
+}
+.order-list .item .quantity-form{
+  padding:0;
+}
+.order-list .item .form-group{
+  margin:0 !important;
+  width:100% !important;
+  height:100% !important;
+}
+.order-list .item .form-group .form-control{
+  background: #e6f0ff;
+  font-size: 1.3em;
+  font-weight:bold;
+  color: #002966;
+}
+.order-list .item .btn-danger{
+  background:#ff9999;
+}
+.order-list .item .btn-danger:hover{
+  background:#ff0000;
+  color:white;
+}
+.order-list .item .btn-info{
+  background:#66a3ff;
+}
+.order-list .item .btn-info:hover{
+  background:#0026ff;
+  color:white;
+}
+.order-details .card{
+  padding:1em 0 1em 0;
+}
+.order-details .card .card-img-top{
+  width:60% !important;
+  margin: auto;
+}
+.order-details .card .order-btn{
+  width:50%;
+  background:#ffb039;
+  color:black;
+  text-transform: uppercase;
+  font-size:1.5em;
+  font-weight:bold;
+  margin-left: 50%;
+  transform:translateX(-50%);
+  padding: 0.3em 0 0.3em 0;
+  transition:background 500ms;
+}
+.order-details .card .order-btn:hover{
+  background:#ff9c08;
 }

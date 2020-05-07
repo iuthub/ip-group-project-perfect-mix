@@ -58,13 +58,51 @@ Route::group([
 		'as' => 'getAdminUserDelete'
 	]);
 
-	
+	Route::get('/user', [
+    	'uses' => 'PostsController@getUser',
+    	'as' => 'getUsers'
+	]);
+
+	Route::get('/user/add', [
+    	'uses' => 'PostsController@getAddUser',
+    	'as' => 'getAddUser'
+	]);
+
+	Route::post('/user/add', [
+    	'uses' => 'PostsController@postAddUser',
+    	'as' => 'postAddUser'
+	]);
 
 	//Food routes
+	Route::get('/food', [
+    	'uses' => 'FoodsController@getFood',
+    	'as' => 'getFoods'
+	]);
+
+	Route::post('/food/addtype', [
+    	'uses' => 'FoodsController@postAddFoodType',
+    	'as' => 'postAddFoodType'
+	]);
+
+	Route::get('/food/delete/type/{id}', [
+		'uses' => 'FoodsController@getDeleteFoodType',
+		'as' => 'deleteGetFoodType'
+	]);
+
+	Route::get('/food/delete/cuisine/{id}', [
+		'uses' => 'FoodsController@getDeleteFoodCuisine',
+		'as' => 'deleteGetFoodCuisine'
+	]);
+
+	Route::post('/food/addcuisine', [
+    	'uses' => 'FoodsController@postAddFoodCuisine',
+    	'as' => 'postAddFoodCuisine'
+	]);
+
 	Route::get('/food/add', [
     	'uses' => 'FoodsController@getAddFood',
     	'as' => 'addGetFood'
-	]);
+	]);	
 
 	Route::post('/food/add', [
     	'uses' => 'FoodsController@postAddFood',
@@ -108,14 +146,13 @@ Route::group([
 		'as' => 'addToCardDelete'
 	]);
 	
-
  	//checkout
  	Route::post('/chekout', [
 		'uses' => 'CardsController@checkoutOrder',
 		'as' => 'checkoutOrder'
 	]);
 
-
 });
+
 
 Auth::routes(['verify'=>true]);

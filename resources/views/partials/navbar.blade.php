@@ -30,67 +30,62 @@
                 </li>
             @else
 
-                <li id="cartcheckout" class="nav-item active">
-                    <div class="row">
-        <div class="col-lg-12 col-sm-12 col-12 main-section">
-            <div class="dropdown">
-                <button type="button" class="btn btn-info" data-toggle="dropdown">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> 
-                    Cart 
-                    <span class="badge badge-pill badge-danger">
-                        {{ (session('cart'))?count((array) session('cart')):'0' }}
-                    </span>
-                </button>
-
-                <div class="dropdown-menu">
-                    <div class="row total-header-section">
-                        
-                        <div class="col-lg-6 col-sm-6 col-6">
-                            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                            <span class="badge badge-pill badge-danger">
-                                {{ (session('cart'))?count((array) session('cart')):'0' }}
-                            </span>
-                        </div>
- 
-                        <?php $total = 0 ?>
-                        @if(session('cart'))
-                        @foreach( (array) session('cart') as $id => $details)
-                            <?php $total += $details['price'] * $details['quantity'] ?>
-                        @endforeach
-                        @endif
-                        <div class="col-lg-6 col-sm-6 col-6 total-section text-right">
-                            <p>Total: <span class="text-info">$ {{ $total }}</span></p>
-                        </div>
-                    
-                    </div>
- 
-                    @if(session('cart'))
-                        @foreach(session('cart') as $id => $details)
-                            <div class="row cart-detail">
-                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img">
-                                    <img style="width: 50px;" src="{{ URL::to($details['photo']) }}" />
+            <li class="nav-item active">
+                <div class="dropdown">
+                    <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown"
+                    id="cardButton">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    Cart
+                    <span class="badge badge-pill badge-danger">{{ (session('cart'))?count((array) session('cart')):'0' }}</span>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="cardButton">
+                        <div class="dropdown-item cart-view-header sticky-top">
+                            <div class="row">
+                                <div class="col-6 text-left">
+                                    <span>Total Price:</span>
                                 </div>
-                                <div class="col-lg-8 col-sm-8 col-8 cart-detail-product">
-                                    <p>{{ $details['name'] }}</p>
-                                    <span class="price text-info"> ${{ $details['price'] }}</span> <span class="count"> Quantity:{{ $details['quantity'] }}</span>
+                                <?php $total = 0 ?>
+                                @if(session('cart'))
+                                @foreach( (array) session('cart') as $id => $details)
+                                <?php $total += $details['price'] * $details['quantity'] ?>
+                                @endforeach
+                                @endif
+                                <div class="col-6 text-right">
+                                    <span class="badge badge-danger">$ {{ $total }}</span>
                                 </div>
                             </div>
-                            <hr/>
-                        @endforeach
-                    @endif
-
-                    <div class="row">
-                        <div class="col-lg-12 col-sm-12 col-12 text-center checkout">
-                            <a href="{{ route('getCard') }}" class="btn btn-primary btn-block">View all</a>
+                        </div>
+                        <div class="dropdown-content dropdown-item">
+                            
+                            @if(session('cart'))
+                            @foreach(session('cart') as $id => $details)
+                            <div class="cart-item">
+                                <div class="row">
+                                    <div class="col-3 p-1">
+                                        <img style="width:100%" src="{{ URL::to($details['photo']) }}" alt="">
+                                    </div>
+                                    <div class="col-9">
+                                        <ul class="list-unstyled position-relative">
+                                            <li class="name">
+                                                {{ $details['name'] }}
+                                            </li>
+                                            <li class="Quantity">
+                                                Quantity: <span class="badge badge-primary">{{ $details['quantity'] }}</span>
+                                            </li>
+                                            <li class="badge badge-success price">
+                                                ${{ $details['price'] }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                            @endif
+                            <a href="{{ route('getCard') }}" class="btn btn-success order-btn">Order</a>
                         </div>
                     </div>
-
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
+            </li>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" id="log-out"href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"> Logout </a>

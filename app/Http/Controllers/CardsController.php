@@ -114,10 +114,10 @@ class CardsController extends Controller
 	            'quantity' => $details["quantity"],
 	        ]);
 	        $order->save();
-	        $total += $details['price'] * $details['quantity'];
+	        $total += $food->price * $details['quantity'];
     	}
 
-    	
+
 
     	$user = Auth::user();
         $orderHistory = OrderProcess::all();

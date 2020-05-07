@@ -38,6 +38,7 @@
                         </div>
                     </div>
                 @endforeach
+                
             </div>
         </section>
 
@@ -52,20 +53,20 @@
                             
                             <img class="card-img-top" src="{{URL::to($food->photo_path)}}" alt="Card image cap">
                             <div class="card-body">
-                                <form method="POST" action="{{ route('addToCard') }}">
-                                    @csrf
-                                    <h4 class="card-title text-left">{{$food->name}}</h4>
-                                    <p class="content">{{$food->description}}</p>
-                                    <div class="row">
-                                        <p class="col-md-6 price">{{$food->price}} sum</p>
-                                        <p class="col-md-6 text-right">
-                                            <input type="number" name="quantity" value='1' min='1' class="quantity">
-                                        </p>
-                                    </div>
-                                    {{-- <button class="submit" class="btn order-btn" align="center">Order</button> --}}
-                                    <input type="hidden" name="id" value="{{ $food->id }}">
-                                    <button type="submit" class="btn order-btn add-cart">Order</button>
-                                </form>
+<form method="POST" id="formfood" action="{{ route('addToCard') }}">
+    @csrf
+    <h4 class="card-title text-left">{{$food->name}}</h4>
+    <p class="content">{{$food->description}}</p>
+    <div class="row">
+        <p class="col-md-6 price">${{$food->price}}</p>
+        <p class="col-md-6 text-right">
+            <input type="number" name="quantity" value='1' min='1' class="quantity">
+        </p>
+    </div>
+    {{-- <button class="submit" class="btn order-btn" align="center">Order</button> --}}
+    <input type="hidden" name="id" value="{{ $food->id }}">
+    <button type="submit" class="btn order-btn add-cart">Order</button>
+</form>
                             </div>
                         </div>
                     </div>
@@ -73,24 +74,6 @@
             @endforeach
         </section>
     </div>
-
-<script type="text/javascript">
- 
-        $(".add-cart").click(function (e) {
-           e.preventDefault();
- 
-           var ele = $(this);
- 
-            $.ajax({
-               url: '{{ route('addToCard') }}',
-               method: "post",
-               data: {_token: '{{ csrf_token() }}', id: ele.attr("data-id"), quantity: ele.parents("tr").find(".quantity").val()},
-               success: function (response) {
-                   window.location.reload();
-               }
-            });
-        });
-</script>
 
 
     <!-- Login Modal -->
