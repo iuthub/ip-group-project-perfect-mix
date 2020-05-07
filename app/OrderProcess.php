@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrderProtcess extends Model
+class OrderProcess extends Model
 {
-	protected $fillable = [
-        'user_id', 'food_id', 'date'
+    protected $fillable = [
+        'user_id', 'food_id','quantity', 'date'
     ];
     
     public function user(){

@@ -15,19 +15,47 @@
 	<link rel="stylesheet" href="{{ URL::to('css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ URL::to('css/animate.css') }}">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
     <link rel="shortcut icon" href="{{ URL::to('assets/icons/shortcut_icon.png') }}">
+    @yield('style')
 </head>
 
 <body>
     @yield('content')
 
     <script src="{{URL::to('js/jquery.js') }}"></script>
-	<script src="{{URL::to('js/custom.js') }}"></script>
-	<script src="{{URL::to('js/all.min.js') }}"></script>
-	<script src="{{URL::to('js/bootstrap.min.js') }}"></script>
-	<script src="{{URL::to('js/bootstrap.js') }}"></script>
+	  <script src="{{URL::to('js/custom.js') }}"></script>
+	  <script src="{{URL::to('js/all.min.js') }}"></script>
+	  <script src="{{URL::to('js/bootstrap.min.js') }}"></script>
+	  <script src="{{URL::to('js/bootstrap.js') }}"></script>
     <script src="{{URL::to('js/lightbox.js') }}"></script>
     <script src="{{URL::to('js/wow.min.js') }}"></script>
+    
+    <script type="text/javascript">
+ 
+        $("#formfood").submit(function(e) { 
+           e.preventDefault();
+ 
+           var ele = $(this);
+ 
+            $.ajax({
+               url: '{{ route('addToCard') }}',
+               method: "post",
+               data: 
+                    $(this).serialize()
+               ,
+               success: function (response) {
+                   //window.location.reload();
+                   //$('#thisdiv').load(document.URL +  ' #thisdiv');
+               }
+            });
+        });
+    </script>
+
+    @yield('script')
 </body>
 
 </html>
