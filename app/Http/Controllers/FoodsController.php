@@ -16,6 +16,17 @@ class FoodsController extends Controller
         return view('food.addFood', ['cuisines'=>$cuisines , 'food_types'=>$food_types]);
     }
 
+    public function getFood()
+    {
+        $foods = Food::orderBy('name','desc')->get();
+        $types = FoodType::all();
+        $cuisines = Cuisine::all();
+        return view('admin.foods', ['foods'=>$foods, 
+            'cuisines'=>$cuisines,
+            'types'=>$types]
+        );
+    }
+
     public function getMenuIndex(){
         $foods = Food::all();
         $food_types = FoodType::all();
@@ -25,6 +36,50 @@ class FoodsController extends Controller
             ['foods'=>$foods, 
             'cuisines'=>$cuisines,
             'food_types'=>$food_types]);
+    }
+
+    public function postAddFoodType(Request $request)
+    {
+        $photo = $request->photo_path->store('images/food','public');
+        $type = new FoodType ([
+            'name' => $request->input('name'),
+            'photo_path' => $photo
+        ]);
+        $type->save();
+        
+        return redirect()->route('getFoods')->with('info', 'Type created');
+    }
+
+    public function getDeleteFoodType($id){
+        $type = FoodType::find($id);
+        
+        $type->delete();
+
+        return redirect()->route('getFoods')->with([
+            'info'=>'Successfully deleted!'
+        ]);
+    }
+
+    public function getDeleteFoodCuisine($id){
+        $cuisine = Cuisine::find($id);
+        
+        $cuisine->delete();
+
+        return redirect()->route('getFoods')->with([
+            'info'=>'Successfully deleted!'
+        ]);
+    }
+
+    public function postAddFoodCuisine(Request $request)
+    {
+        $photo = $request->photo_path->store('images/food','public');
+        $cuisine = new Cuisine ([
+            'name' => $request->input('name'),
+            'photo_path' => $photo
+        ]);
+        $cuisine->save();
+        
+        return redirect()->route('getFoods')->with('info', 'Cuisine created');
     }
 
     public function postAddFood(Request $request)
@@ -48,7 +103,7 @@ class FoodsController extends Controller
         ]);
         $food->save();
         
-        return redirect()->route('mainIndex')->with('info', 'Food created: ' . $request->input('name'));
+        return redirect()->route('getFoods')->with('info', 'Food created');
     }
 
 
@@ -81,16 +136,16 @@ class FoodsController extends Controller
 
         $food->save();
         
-        return redirect()->route('dashboardIndex')->with([
+        return redirect()->route('getFoods')->with([
             'info'=>'Successfully updated!']);
     }
 
     public function getDeleteFood($id){
-    	$food = Food::find($id);
-        
+    	
+        $food = Food::find($id);
         $food->delete();
 
-        return redirect()->route('dashboardIndex')->with([
+        return redirect()->route('getFoods')->with([
             'info'=>'Successfully deleted!'
         ]);
     }

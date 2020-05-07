@@ -405,21 +405,6 @@ footer img.right {
 	transform:translateX(-50%);
 	font-weight:bold;
 }
-.food-types .traditional{
-	
-}
-.food-types .salad {
-	background: url(/assets/icons/salad.png) no-repeat center;
-	background-color: white;
-}
-.food-types .fish {
-	background: url(/assets/icons/fish.png) no-repeat center;
-	background-color: white;
-}
-.food-types .soup {
-	background: url(/assets/icons/hot-soup.png) no-repeat center;
-	background-color: white;
-}
 .foods{
 	margin: 7em 0 7em 0;
 }
