@@ -1,3 +1,4 @@
+
 <div class="modal reg-modal fade" id="orderTableWindow" tabindex="-1" role="dialog"
     aria-labelledby="orderTableWindowTitle" aria-hidden="true">
 <div class="modal-dialog modal-dialog-centered" role="document">
@@ -26,8 +27,7 @@
                             <option value="9">Table #9</option>
                             <option value="10">Table #10</option>
                             <option value="11">Table #11</option>
-                        </select>
-                        
+                        </select>                        
                     </div>
                     <div class="form-group">
                         <label for="numberOfPeople">How many are you?</label>

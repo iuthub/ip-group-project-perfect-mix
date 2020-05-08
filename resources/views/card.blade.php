@@ -141,6 +141,9 @@
     
     @include('partials.contact')
     
+    <!-- Edit Profile Modal -->
+    @include('partials.edit')
+    <!-- Footer -->
     @include('partials.footer')
 
 @endsection
