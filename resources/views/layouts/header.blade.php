@@ -30,6 +30,7 @@
     <script src="{{URL::to('js/lightbox.js') }}"></script>
     <script src="{{URL::to('js/wow.min.js') }}"></script>
     @yield('script')
+    
 </body>
 
 </html>

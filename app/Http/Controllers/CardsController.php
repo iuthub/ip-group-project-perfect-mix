@@ -11,7 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class CardsController extends Controller
 {
     public function getCard(){
-    	return view('card');
+    	
+        $user=Auth::user();
+        return view('card',['user'=>$user]);
     }
 
     public function addToCart(Request $request)
@@ -103,9 +105,14 @@ class CardsController extends Controller
 
     public function checkoutOrder(Request $request){
 
+        if(!session('cart')){
+            return redirect()->route('menuIndex')->with([
+            'error'=>'You have not any order!']);
+        }
+
     	$user_id = Auth::user()->id;
     	$total = 0;
-    	foreach(session('cart') as $id => $details)
+        foreach(session('cart') as $id => $details)
     	{
 			$food = Food::find($details['id']);
 			$order = new OrderProcess ([

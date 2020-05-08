@@ -152,6 +152,12 @@ Route::group([
 		'as' => 'checkoutOrder'
 	]);
 
+
+	Route::post('/table', [
+		'uses' => 'PostsController@tables',
+		'as' => 'reserveTable'
+	]);
+
 });
 
 

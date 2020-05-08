@@ -7,6 +7,7 @@ use App\Food;
 use App\FoodType;
 use App\User;
 use App\Role;
+use App\Tables;
 use App\OrderHistory;
 use App\OrderProcess;
 use App\Vaucher;
@@ -185,5 +186,23 @@ class PostsController extends Controller
             'info'=>'Successfully deleted!'
         ]);
     }   
+
+    public function tables(Request $request) {
+
+        $user = Auth::user();
+        $table = new Tables ([
+            'user_id' => $user->id,
+            'seat_number' => $request->input('table'),
+            'number_of_people' => $request->input('numPeople'),
+            'timeStart' => $request->input('reserveStartTime'),
+            'timeEnd' => $request->input('reserveEndTime')
+        ]);
+        $table->save();
+
+        return redirect()->route('dashboardIndex')->with([
+            'info'=>'Table booked!'
+        ]);
+    }   
+
 
 }

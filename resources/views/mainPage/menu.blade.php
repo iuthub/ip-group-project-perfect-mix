@@ -34,7 +34,7 @@
                 @foreach($food_types as $food_type)
                     <div class="col-md-3 col-lg-3 col-sm-6 mt-3">
                         <div class="item text-center" style="background: url({{URL::to($food_type->photo_path)}}) no-repeat center;background-size: cover;">
-                            <span>{{$food_type->name}}</span>
+                            <a href="#{{$food_type->name}}">{{$food_type->name}}</a>
                         </div>
                     </div>
                 @endforeach
@@ -43,10 +43,23 @@
         </section>
 
         <section class="foods">
-            <h2 class="title text-center">Traditional foods</h2>
-            <div class="row">
+            {{-- <h2 class="title text-center">Traditional foods</h2>
+            <div class="row"> --}}
 
+            
+            <?php $first_type = $foods[0]->type->name ?>
+          
+            
+            <h2 id="{{$first_type}}" class="title text-center">{{$first_type}}</h2>
+                <div class="row">
+            
             @foreach($foods as $food)
+                @if(!($first_type===$food->type->name))
+                   <?php $first_type = $food->type->name; ?>
+                </div>
+                <h2 id="{{$first_type}}" class="title text-center">{{ $first_type }}</h2>
+                <div class="row">    
+                @endif
                 <div class="col-md-4 col-lg-4 col-sm-6 col-xs-12">
                     <div class="item">
                         <div class="card">
@@ -69,26 +82,12 @@
                                     <button type="submit" class="btn order-btn add-cart">Order</button>
                                 </form>
 
-<form method="POST" id="formfood" action="{{ route('addToCard') }}">
-    @csrf
-    <h4 class="card-title text-left">{{$food->name}}</h4>
-    <p class="content">{{$food->description}}</p>
-    <div class="row">
-        <p class="col-md-6 price">${{$food->price}}</p>
-        <p class="col-md-6 text-right">
-            <input type="number" name="quantity" value='1' min='1' class="quantity">
-        </p>
-    </div>
-    {{-- <button class="submit" class="btn order-btn" align="center">Order</button> --}}
-    <input type="hidden" name="id" value="{{ $food->id }}">
-    <button type="submit" class="btn order-btn add-cart">Order</button>
-</form>
-
                             </div>
                         </div>
                     </div>
                 </div>
             @endforeach
+        </div>
         </section>
     </div>
 
@@ -98,7 +97,11 @@
     <!-- Registration Modal -->
 	@include('partials.registration')
 
-	@include('partials.footer')
+    @include('partials.tableOrder')
+	
+    @include('partials.contact')
+    
+    @include('partials.footer')
 @endsection
 
 @section('script')
