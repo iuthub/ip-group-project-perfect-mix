@@ -48,6 +48,7 @@ html{
 }
 .custom-nav .navbar-nav .nav-link{
 	text-decoration: none;
+	cursor:pointer;
 	color: white;
 	font-size:1.2em;
 	padding:2px;

@@ -17,7 +17,9 @@ class CreateTablesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->integer('seat_number');
-            $table->date('time');
+            $table->integer('number_of_people');
+            $table->time('timeStart');
+            $table->time('timeEnd');
         });
     }
 

@@ -11,10 +11,10 @@
                     <a class="nav-link" href="#">Drinks</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Table Ordering</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#orderTableWindow">Table Ordering</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Contacts</a>
+                    <a class="nav-link" data-toggle="modal" data-target="#contactUsWindow">Contact Us</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" href="{{route('dashboardIndex')}}">Dashboard</a>

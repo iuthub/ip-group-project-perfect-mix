@@ -97,7 +97,11 @@
     <!-- Registration Modal -->
 	@include('partials.registration')
 
-	@include('partials.footer')
+    @include('partials.tableOrder')
+	
+    @include('partials.contact')
+    
+    @include('partials.footer')
 @endsection
 
 @section('script')

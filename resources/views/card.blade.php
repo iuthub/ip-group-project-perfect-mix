@@ -136,8 +136,10 @@
     @include('partials.login')
     <!-- Registration Modal -->
     @include('partials.registration')
-    <!-- Edit Profile Modal -->
-    @include('partials.edit')
+
+    @include('partials.tableOrder')
+    
+    @include('partials.contact')
     <!-- Footer -->
     @include('partials.footer')
 
