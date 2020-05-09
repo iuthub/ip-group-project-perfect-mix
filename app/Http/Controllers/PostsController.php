@@ -48,11 +48,11 @@ class PostsController extends Controller
     {
         //validation
         $this->validate($request, [
-            'name' => 'required|regex:/^\D{2,}$/',
+            'name' => 'required|regex:/^[A-z]{2,}/',
             'address' => 'required',
-            'email' => 'required|regex:/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/',
-            'phone_number' => 'required|regex:/^\d{9,}$/ ',
-            'password' => 'required|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{5,}$/'
+            'email' => 'required|regex:/\b[A-Za-z0-9\-\_]+@[A-Za-z0-9]+\.[A-Za-z]{2,}\b/',
+            'phone_number' => 'required|regex:/^\d{8,}$/',
+            'password' => 'required|regex:/.{6,}/'
         ]);
         
         $user = new User ([
@@ -133,9 +133,9 @@ class PostsController extends Controller
         $user = Auth::user();
         
         $this->validate($request, [
-            'name' => 'required|regex:/^\D{2,}$/',
+            'name' => 'required|regex:/^[A-z]{2,}/',
             'address' => 'required',
-            'email' => 'required|regex:/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/',
+            'email' => 'required',
             'phone_number' => 'required|regex:/^\d{9,}$/',
         ]);
         
@@ -182,10 +182,10 @@ class PostsController extends Controller
     public function postAdminUserEdit(Request $request) {
 
         $this->validate($request, [
-            'name' => 'required|regex:/^\D{2,}$/',
+            'name' => 'required|regex:/^[A-z]{2,}/',
             'address' => 'required',
-            'email' => 'required|regex:/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/',
-            'phone_number' => 'required|regex:/^\d{9,}$/',
+            'email' => 'required|regex:/\b[A-Za-z0-9\-\_]+@[A-Za-z0-9]+\.[A-Za-z]{2,}\b/',
+            'phone_number' => 'required|regex:/^\d{8,}$/',
         ]);
 
         $user = User::find($request->input('id'));
@@ -228,7 +228,7 @@ class PostsController extends Controller
 
          $this->validate($request, [
             'table' => 'required',
-            'numPeople' => 'required|regex:/^[1-9]\d*$/',
+            'numPeople' => 'required',
             'reserveStartTime' => 'required',
             'reserveEndTime' => 'required'
         ]);

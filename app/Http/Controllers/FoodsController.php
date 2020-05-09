@@ -57,7 +57,7 @@ class FoodsController extends Controller
         $photo = $request->photo_path->store('images/food','public');
         
         $this->validate($request, [
-            'name' => 'required|regex:/^\D{2,}$/',
+            'name' => 'required|regex:/^[A-z]{2,}/',
         ]);
         
         $type = new FoodType ([
@@ -99,7 +99,7 @@ class FoodsController extends Controller
     {
         $photo = $request->photo_path->store('images/food','public');
         $this->validate($request, [
-            'name' => 'required|regex:/^\D{2,}$/',
+            'name' => 'required|regex:/^[A-z]{2,}/',
         ]);
         $cuisine = new Cuisine ([
             'name' => $request->input('name'),
@@ -114,7 +114,7 @@ class FoodsController extends Controller
     {
     	//validation
         $this->validate($request, [
-            'name' => 'required|regex:/^\D{2,}$/',
+            'name' => 'required|regex:/^[A-z]{2,}/',
             'description' => 'required',
             'type_id' => 'required',
             'cuisine_id' => 'required',
@@ -152,7 +152,7 @@ class FoodsController extends Controller
 
     public function postEditFood(Request $request){
     	$this->validate($request, [
-            'name' => 'required|regex:/^\D{2,}$/',
+            'name' => 'required|regex:/^[A-z]{2,}/',
             'description' => 'required',
             'price' => 'required|regex:/^((([1-9]\d*)|0)(.\d+)?)$/'
         ]);
