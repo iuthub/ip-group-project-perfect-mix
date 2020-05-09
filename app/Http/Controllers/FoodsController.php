@@ -42,7 +42,7 @@ class FoodsController extends Controller
     }
 
     public function getMenuIndex(){
-        $foods = Food::orderBy('type_id','desc')->get();;
+        $foods = Food::orderBy('type_id','asc')->get();;
         $food_types = FoodType::all();
         $cuisines = Cuisine::all();
         
@@ -57,7 +57,7 @@ class FoodsController extends Controller
         $photo = $request->photo_path->store('images/food','public');
         
         $this->validate($request, [
-            'name' => 'required|regex:/^[A-z]{2,}/',
+            'name' => 'required|regex:/[A-z]{2,}/',
         ]);
         
         $type = new FoodType ([
@@ -99,7 +99,7 @@ class FoodsController extends Controller
     {
         $photo = $request->photo_path->store('images/food','public');
         $this->validate($request, [
-            'name' => 'required|regex:/^[A-z]{2,}/',
+            'name' => 'required|regex:/[A-z]{2,}/',
         ]);
         $cuisine = new Cuisine ([
             'name' => $request->input('name'),
@@ -114,11 +114,11 @@ class FoodsController extends Controller
     {
     	//validation
         $this->validate($request, [
-            'name' => 'required|regex:/^[A-z]{2,}/',
+            'name' => 'required|regex:/[A-z]{2,}/',
             'description' => 'required',
             'type_id' => 'required',
             'cuisine_id' => 'required',
-            'price' => 'required|regex:/^((([1-9]\d*)|0)(.\d+)?)$/'
+            'price' => 'required|regex:/^[0-9]*\.?[0-9]*$/'
         ]);
 		
         $photo = $request->photo_path->store('images/food','public');
@@ -134,7 +134,6 @@ class FoodsController extends Controller
         
         return redirect()->route('getFoods')->with('info', 'Food created');
     }
-
 
     public function getEditFood($id){
     	$food = Food::find($id);
@@ -152,7 +151,7 @@ class FoodsController extends Controller
 
     public function postEditFood(Request $request){
     	$this->validate($request, [
-            'name' => 'required|regex:/^[A-z]{2,}/',
+            'name' => 'required|regex:/[A-z]{2,}/',
             'description' => 'required',
             'price' => 'required|regex:/^((([1-9]\d*)|0)(.\d+)?)$/'
         ]);

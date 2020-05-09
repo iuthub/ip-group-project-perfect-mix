@@ -110,7 +110,8 @@ class CardsController extends Controller
             'info'=>'You have not any order!']);
         }
 
-    	$user_id = Auth::user()->id;
+        $user = Auth::user();
+    	$user_id = $user->id;
     	$total = 0;
         foreach(session('cart') as $id => $details)
     	{
@@ -123,6 +124,17 @@ class CardsController extends Controller
 	        $order->save();
 	        $total += $food->price * $details['quantity'];
     	}
+
+        if($total<'500' && $total>'300' && $user->vaucher_id < '2' ){
+            $user->vaucher_id = '2';
+            $user->save();
+        }elseif ($total<'700' && $total>'500' && $user->vaucher_id < '3') {
+            $user->vaucher_id = '3';
+            $user->save();
+        }elseif ($total>'700' && $user->vaucher_id < '4') {
+            $user->vaucher_id = '4';
+            $user->save();
+        }
 
     	$user = Auth::user();
         $orderHistory = OrderProcess::all();

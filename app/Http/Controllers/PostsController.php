@@ -30,6 +30,7 @@ class PostsController extends Controller
             return redirect()->route('dashboardIndex')->with([
             'info'=>'You are not authorized!']);            
         }
+
         $users = User::orderBy('full_name','desc')->get();
         return view('admin.users', [
              'users' => $users,
@@ -48,10 +49,10 @@ class PostsController extends Controller
     {
         //validation
         $this->validate($request, [
-            'name' => 'required|regex:/^[A-z]{2,}/',
+            'name' => 'required|regex:/[A-z]{2,}/',
             'address' => 'required',
-            'email' => 'required|regex:/\b[A-Za-z0-9\-\_]+@[A-Za-z0-9]+\.[A-Za-z]{2,}\b/',
-            'phone_number' => 'required|regex:/^\d{8,}$/',
+            'email' => 'required',
+            'phone_number' => 'required|regex:/^[0-9\+]{7,}$/',
             'password' => 'required|regex:/.{6,}/'
         ]);
         
@@ -68,11 +69,9 @@ class PostsController extends Controller
     }
 
     public function getDashboardIndex(){
-            
-        if(Auth::user()->role->name=='admin'){
+        if(Auth::user()->role->name=="admin"){
                 $users = User::orderBy('full_name','desc')->get();
                 $foods = Food::orderBy('name','desc')->get();
-                
                 $procesess = DB::table('order_processes')
                 ->join('users','users.id','=','order_processes.user_id')
                 ->join('foods','foods.id','=','order_processes.food_id')
@@ -99,8 +98,9 @@ class PostsController extends Controller
                  'foods' => $foods,
                  'procesess' => $procesess,
                  'tables' => $tables,
-                 'histories' => $histories
+                 'histories' => $histories,
             ]);
+
         }
         else 
             {
@@ -133,10 +133,10 @@ class PostsController extends Controller
         $user = Auth::user();
         
         $this->validate($request, [
-            'name' => 'required|regex:/^[A-z]{2,}/',
+            'name' => 'required|regex:/[A-z]{2,}/',
             'address' => 'required',
             'email' => 'required',
-            'phone_number' => 'required|regex:/^\d{9,}$/',
+            'phone_number' => 'required|regex:/^[0-9\+]{7,}$/',
         ]);
         
         $user->full_name = $request->input('name');
@@ -145,7 +145,7 @@ class PostsController extends Controller
         if ($request->input('password')) {
             if($request->input('password')==$request->input('password_confirmation')){
                 $this->validate($request, [
-                    'password' => ['required', 'string', 'min:8', 'confirmed']
+                    'password' => ['required', 'string', 'min:6', 'confirmed']
                 ]);
                 $user->password = Hash::make($request->input('password'));
             }
@@ -181,11 +181,11 @@ class PostsController extends Controller
 
     public function postAdminUserEdit(Request $request) {
 
+
         $this->validate($request, [
-            'name' => 'required|regex:/^[A-z]{2,}/',
+            'name' => 'required|regex:/[A-z]{2,}/',
             'address' => 'required',
-            'email' => 'required|regex:/\b[A-Za-z0-9\-\_]+@[A-Za-z0-9]+\.[A-Za-z]{2,}\b/',
-            'phone_number' => 'required|regex:/^\d{8,}$/',
+            'phone_number' => 'required|regex:/^[0-9\+]{7,}$/',
         ]);
 
         $user = User::find($request->input('id'));
@@ -195,7 +195,7 @@ class PostsController extends Controller
         $user->phone_number = $request->input('phone_number');
         if ($request->input('password')) {
             $this->validate($request, [
-                    'password' => ['required', 'string', 'min:8', 'confirmed']
+                    'password' => ['required', 'string', 'min:6', 'confirmed']
                 ]);
             $user->password = Hash::make($request->input('password'));    
         }
@@ -204,6 +204,11 @@ class PostsController extends Controller
         $user->role_id = ($request->input('role_id'))?$request->input('role_id'):$user->role_id;
         
         $user->save();
+        
+        if(!(Auth::user()->role->name=="admin")){
+            return redirect()->route('dashboardIndex')->with([
+            'info'=>'Successfully updated!']);            
+        }
         
         return redirect()->route('getUsers')->with([
             'info'=>'Successfully updated!']);
@@ -290,10 +295,10 @@ class PostsController extends Controller
         ]);
 
         $user = Auth::user();
-        Mail::to($user->email)->send(new Contact($user->full_name,$request->input('subject'),$request->input('message')));
+        Mail::to('info@perfectmix.uz')->send(new Contact($user->full_name,$request->input('subject'),$request->input('message')));
 
         return redirect()->route('dashboardIndex')->with([
-            'info'=>'Messege successfully sended!']);
+            'info'=>'Message successfully sended!']);
     }
 
 
