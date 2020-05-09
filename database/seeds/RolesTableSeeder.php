@@ -17,10 +17,10 @@ class RolesTableSeeder extends Seeder
         ]);
     	$role->save();
 
-    	$role=new Role([
-        	'name' => 'employer'
+        $role=new Role([
+            'name' => 'employer'
         ]);
-    	$role->save();
+        $role->save();
 
     	$role=new Role([
         	'name' => 'admin'

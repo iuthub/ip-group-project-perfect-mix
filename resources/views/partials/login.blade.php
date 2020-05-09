@@ -23,6 +23,7 @@
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                         @endif
+                        <a class="" href="#" id="sign-up" data-toggle="modal" data-target="#registrationWindow">Sign Up</a>
                     </form>
                 </div>
                 <img src="{{URL::to('assets/projectPhotos/ice-tea.png')}}" alt="" class="login-bg">

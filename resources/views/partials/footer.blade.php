@@ -16,11 +16,11 @@
                     </li>
                     <li class="contact-item">
                         <i class="fas fa-phone fa-2x float-left"></i>
-                        <span class="pl-1">+99871 268-41-23</span>
+                        <span class="pl-1">+99871 289-99-99</span>
                     </li>
                     <li class="contact-item">
                         <i class="far fa-envelope fa-2x float-left"></i>
-                        <span class="pl-1">fantasy@gmail.com</span>
+                        <span class="pl-1">info@perfectmix.uz</span>
                     </li>
                 </ul>
             </div>

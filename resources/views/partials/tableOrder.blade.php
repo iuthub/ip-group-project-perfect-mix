@@ -45,7 +45,11 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mb-2">Reserve</button>
+                    @if(Auth::check())
+                        <button type="submit" class="btn btn-primary mb-2">Reserve</button>
+                    @else
+                        <button disabled type="submit" class="btn btn-primary mb-2">You are not Authorized</button>
+                    @endif
                 </form>
             </div>
         </div>

@@ -4,7 +4,7 @@
 
 @section('content')
 
-<div class="modal-body">
+<div style="width: 40%; margin: auto;" class="modal-body">
     <form method="POST" action="{{ route('postAdminUserEdit') }}">
         @csrf
         <h5 class="text-center text-primary"><strong>Edit Information</strong></h5>
@@ -49,7 +49,8 @@
         </div>
         @endif
         <input type="hidden" name="id" value="{{ $user->id }}">
-        <button type="submit" class="btn btn-primary mb-2">Register</button>
+        <button style="margin-top: 10px;" type="submit" class="btn btn-success">Edit User</button>
+    <a style="margin-top: 10px;" href="{{route('getUsers')}}" class="btn btn-danger">Back</a>
     </form>
 </div>
 

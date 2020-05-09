@@ -334,7 +334,7 @@ footer img.right {
 	color: #004d4d;
 	border:none;
 	font-weight:bold;
-	width:40%;
+	width:50%;
 	transition: background 0.5s, color 0.5s;
 }
 .reg-modal button[type="submit"]:hover {
@@ -370,7 +370,7 @@ footer img.right {
 .section-cuisine .cuisine{
 	border:1px solid black;
 	border-radius:20px;
-	padding:5em;
+	padding:4em;
 	position:relative;
 }
 .section-cuisine .cuisine .overlay{
@@ -390,29 +390,13 @@ footer img.right {
 }
 .section-cuisine .cuisine .overlay span{
 	color: white;
-	font-size: 2em;
+	font-size: 1.5em;
 	text-transform: uppercase;
 	position: absolute;
 	bottom: 20%;
 	left:50%;
 	transform: translateX(-50%);
 	font-family: 'Rye', cursive;}
-.cuisine-uzb{
-	background: url(/assets/img/flags/uzbekistan-flag.jpg) no-repeat center;
-	background-size: cover;
-}
-.cuisine-eu {
-	background: url(/assets/img/flags/eu-flag.jpg) no-repeat center;
-	background-size: cover;
-}
-.cuisine-china {
-	background: url(/assets/img/flags/china-flag.jpg) no-repeat center;
-	background-size: cover;
-}
-.cuisine-italy {
-	background: url(/assets/img/flags/italy-flag.jpg) no-repeat center;
-	background-size: cover;
-}
 .food-types .item {
 	border: 1px solid black;
 	border-radius: 50px;
@@ -428,24 +412,9 @@ footer img.right {
 	transform:translateX(-50%);
 	font-weight:bold;
 }
-.food-types .traditional{
-	background: url(/assets/icons/traditional-food.png) no-repeat center;
-	background-color: white;
-}
-.food-types .salad {
-	background: url(/assets/icons/salad.png) no-repeat center;
-	background-color: white;
-}
-.food-types .fish {
-	background: url(/assets/icons/fish.png) no-repeat center;
-	background-color: white;
-}
-.food-types .soup {
-	background: url(/assets/icons/hot-soup.png) no-repeat center;
-	background-color: white;
-}
+
 .foods{
-	margin: 7em 0 7em 0;
+	margin: 2em 0 7em 0;
 }
 .foods .item{
 	margin-bottom: 12em;

@@ -14,6 +14,7 @@ class CreateOrderProcessesTable extends Migration
     public function up()
     {
         Schema::create('order_processes', function (Blueprint $table) {
+            $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('food_id');
             $table->Integer('quantity');

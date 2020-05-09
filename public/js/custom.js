@@ -33,3 +33,10 @@ try {
         });
     });
 } catch (error) {}
+
+
+
+$('.alertbox').fadeOut(3000);
+
+
+
