@@ -44,7 +44,7 @@ class CardsController extends Controller
  
             session()->put('cart', $cart);
  
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect()->back()->with('info', 'Product added to cart successfully!');
         }
  
         // if cart not empty then check if this product exist then increment quantity
@@ -53,7 +53,7 @@ class CardsController extends Controller
  
             session()->put('cart', $cart);
  
-            return redirect()->back()->with('success', 'Product added to cart successfully!');
+            return redirect()->back()->with('info', 'Product added to cart successfully!');
  
         }
  
@@ -68,7 +68,7 @@ class CardsController extends Controller
  
         session()->put('cart', $cart);
  
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
+        return redirect()->back()->with('info', 'Product added to cart successfully!');
     }
 
 
@@ -82,7 +82,7 @@ class CardsController extends Controller
  
             session()->put('cart', $cart);
  
-            session()->flash('success', 'Cart updated successfully');
+            session()->flash('info', 'Cart updated successfully');
         }
     }
  
@@ -99,7 +99,7 @@ class CardsController extends Controller
                 session()->put('cart', $cart);
             }
  
-            session()->flash('success', 'Product removed successfully');
+            session()->flash('info', 'Product removed successfully');
         }
     }
 
@@ -107,7 +107,7 @@ class CardsController extends Controller
 
         if(!session('cart')){
             return redirect()->route('menuIndex')->with([
-            'error'=>'You have not any order!']);
+            'info'=>'You have not any order!']);
         }
 
     	$user_id = Auth::user()->id;
@@ -123,8 +123,6 @@ class CardsController extends Controller
 	        $order->save();
 	        $total += $food->price * $details['quantity'];
     	}
-
-
 
     	$user = Auth::user();
         $orderHistory = OrderProcess::all();

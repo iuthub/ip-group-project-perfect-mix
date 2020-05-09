@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Contact;
 use App\Cuisine;
 use App\Food;
 use App\FoodType;
@@ -24,6 +26,10 @@ class PostsController extends Controller
 
     public function getUser()
     {
+        if(!(Auth::user()->role->name=="admin")){
+            return redirect()->route('dashboardIndex')->with([
+            'info'=>'You are not authorized!']);            
+        }
         $users = User::orderBy('full_name','desc')->get();
         return view('admin.users', [
              'users' => $users,
@@ -31,6 +37,10 @@ class PostsController extends Controller
     }
 
     public function getAddUser(){
+        if(!(Auth::user()->role->name=="admin")){
+            return redirect()->route('dashboardIndex')->with([
+            'info'=>'You are not authorized!']);            
+        }
         return view('admin.addUser');
     }
 
@@ -39,8 +49,10 @@ class PostsController extends Controller
         //validation
         $this->validate($request, [
             'name' => 'required|regex:/^\D{2,}$/',
-            'address' => 'required'
-            
+            'address' => 'required',
+            'email' => 'required|regex:/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/',
+            'phone_number' => 'required|regex:/^\d{9,}$/ ',
+            'password' => 'required|regex:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{5,}$/'
         ]);
         
         $user = new User ([
@@ -60,41 +72,50 @@ class PostsController extends Controller
         if(Auth::user()->role->name=='admin'){
                 $users = User::orderBy('full_name','desc')->get();
                 $foods = Food::orderBy('name','desc')->get();
+                
+                $procesess = DB::table('order_processes')
+                ->join('users','users.id','=','order_processes.user_id')
+                ->join('foods','foods.id','=','order_processes.food_id')
+                ->select('order_processes.id','users.full_name','foods.name','order_processes.created_at','order_processes.quantity')
+                ->orderBy('created_at','desc')
+                ->get();
+                
+                $tables = DB::table('tables')
+                ->join('users','users.id','=','tables.user_id')
+                ->select('users.full_name','tables.number_of_people','tables.seat_number','tables.timeStart','tables.timeEnd','tables.id')
+                ->orderBy('seat_number','desc')
+                ->get();
+
+
+                $histories = DB::table('order_histories')
+                ->join('users','users.id','=','order_histories.user_id')
+                ->join('foods','foods.id','=','order_histories.food_id')
+                ->select('users.id','users.full_name','foods.id','foods.name','order_histories.created_at','order_histories.quantity')
+                ->orderBy('created_at','desc')
+                ->paginate(10);
+                
             return view('admin.index', [
-             'users' => $users,
-             'foods' => $foods
-        ]);
-            //return view('admin.index');
+                 'users' => $users,
+                 'foods' => $foods,
+                 'procesess' => $procesess,
+                 'tables' => $tables,
+                 'histories' => $histories
+            ]);
         }
-        elseif(Auth::user()->role->name=='employer')
-            {
-                return view('employer.index');
-            }
         else 
             {
                 $user = Auth::user();
-                // $userOrderProcess = OrderProcess::query()->where('user_id',
-                //  'LIKE', "%{$user->id}%")->get();
 
-                // $orderHistories = DB::table('order_histories')
-                // ->join('foods','foods.id','=','order_histories.food_id')
-                // ->select('foods.id','foods.name','foods.description','foods.photo_path','foods.price','order_histories.created_at','order_histories.quantity')
-                // ->orderBy('created_at','desc')
-                // ->where('order_histories.user_id',$user->id)
-                // ->paginate(5);
-
-                $orderHistories = DB::table('order_processes')
-                ->join('foods','foods.id','=','order_processes.food_id')
-                ->select('foods.id','foods.name','foods.description','foods.photo_path','foods.price','order_processes.created_at','order_processes.quantity')
+                $orderHistories = DB::table('order_histories')
+                ->join('foods','foods.id','=','order_histories.food_id')
+                ->select('foods.id','foods.name','foods.description','foods.photo_path','foods.price','order_histories.created_at','order_histories.quantity')
                 ->orderBy('created_at','desc')
-                ->where('order_processes.user_id',$user->id)
+                ->where('order_histories.user_id',$user->id)
                 ->get();
 
-                $countOrder = OrderProcess::query()->where('user_id',
+                $countOrder = OrderHistory::query()->where('user_id',
                   'LIKE', "%{$user->id}%")->count();
 
-                // $orderProcess = Food::query()->where('id',
-                //  'LIKE', "%{$userOrderProcess->food_id}%")->get();
                 return view('user.index',['user'=>$user,'orderHistories'=>$orderHistories,'countOrder'=>$countOrder]);
             }
     }
@@ -112,7 +133,10 @@ class PostsController extends Controller
         $user = Auth::user();
         
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => 'required|regex:/^\D{2,}$/',
+            'address' => 'required',
+            'email' => 'required|regex:/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/',
+            'phone_number' => 'required|regex:/^\d{9,}$/',
         ]);
         
         $user->full_name = $request->input('name');
@@ -127,7 +151,7 @@ class PostsController extends Controller
             }
             else{
                 return redirect()->back()->with([
-                    'errors'=>'Password does not match'
+                    'info'=>'Password does not match'
                 ]);
             }
         }
@@ -140,8 +164,13 @@ class PostsController extends Controller
     }
 
     public function getAdminUserEdit($id) {
-        
+
         $user = User::find($id);
+        
+        if(!(Auth::user()->role->name=="admin")){
+            return redirect()->route('dashboardIndex')->with([
+            'info'=>'You are not authorized!']);            
+        }
         $roles = Role::all();
         $vauchers = Vaucher::all();
 
@@ -153,7 +182,10 @@ class PostsController extends Controller
     public function postAdminUserEdit(Request $request) {
 
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => 'required|regex:/^\D{2,}$/',
+            'address' => 'required',
+            'email' => 'required|regex:/^([A-Z|a-z|0-9](\.|_){0,1})+[A-Z|a-z|0-9]\@([A-Z|a-z|0-9])+((\.){0,1}[A-Z|a-z|0-9]){2}\.[a-z]{2,3}$/',
+            'phone_number' => 'required|regex:/^\d{9,}$/',
         ]);
 
         $user = User::find($request->input('id'));
@@ -179,7 +211,10 @@ class PostsController extends Controller
 
     public function getAdminUserDelete($id) {
         $user = User::find($id);
-        
+        if(!(Auth::user()->role->name=="admin")){
+            return redirect()->route('dashboardIndex')->with([
+            'info'=>'You are not authorized!']);            
+        }
         $user->delete();
 
         return redirect()->route('getUsers')->with([
@@ -190,6 +225,14 @@ class PostsController extends Controller
     public function tables(Request $request) {
 
         $user = Auth::user();
+
+         $this->validate($request, [
+            'table' => 'required',
+            'numPeople' => 'required|regex:/^[1-9]\d*$/',
+            'reserveStartTime' => 'required',
+            'reserveEndTime' => 'required'
+        ]);
+
         $table = new Tables ([
             'user_id' => $user->id,
             'seat_number' => $request->input('table'),
@@ -203,6 +246,55 @@ class PostsController extends Controller
             'info'=>'Table booked!'
         ]);
     }   
+
+    public function acceptOrder(Request $request){
+
+        $order = OrderProcess::find($request->input('id'));
+        //$food = Food::find($order_id->food_id);
+        if(!(Auth::user()->role->name=="admin")){
+            return redirect()->route('dashboardIndex')->with([
+            'errors'=>'You are not authorized!']);            
+        }
+        $history = new OrderHistory ([
+            'user_id' => $order->user_id,
+            'food_id' => $order->food_id,
+            'quantity' => $order->quantity,
+        ]);
+        $history->save();
+        $order->delete();
+
+        return redirect()->route('dashboardIndex')->with([
+            'info'=>'Order accepted!']);
+
+    }
+
+    public function acceptTable(Request $request){
+
+        $table = Tables::find($request->input('id'));
+        if(!(Auth::user()->role->name=="admin")){
+            return redirect()->route('dashboardIndex')->with([
+            'info'=>'You are not authorized!']);            
+        }
+        $table->delete();
+
+        return redirect()->route('dashboardIndex')->with([
+            'info'=>'Table accepted!']);
+
+    }
+
+    public function sendEmail(Request $request){
+
+        $this->validate($request, [
+            'subject' => 'required',
+            'message' => 'required'
+        ]);
+
+        $user = Auth::user();
+        Mail::to($user->email)->send(new Contact($user->full_name,$request->input('subject'),$request->input('message')));
+
+        return redirect()->route('dashboardIndex')->with([
+            'info'=>'Messege successfully sended!']);
+    }
 
 
 }
