@@ -18,6 +18,11 @@ Route::get('/', [
 	'as' => 'mainIndex'
 ]);
 
+Route::get('/menu', [
+		'uses' => 'FoodsController@getMenuIndex',
+		'as'=> 'menuIndex'
+	]);
+
 Route::group([
 	'prefix'=>'dashboard',
 	'middleware' => ['auth', 'verified']
@@ -28,10 +33,7 @@ Route::group([
 		'as'=> 'dashboardIndex'
 	]);
 
-	Route::get('/menu', [
-		'uses' => 'FoodsController@getMenuIndex',
-		'as'=> 'menuIndex'
-	]);
+	
 
 	Route::get('/edit', [
 		'uses' => 'PostsController@getUserEdit',
@@ -158,6 +160,25 @@ Route::group([
 		'as' => 'reserveTable'
 	]);
 
+	Route::post('/acceptOrder', [
+		'uses' => 'PostsController@acceptOrder',
+		'as' => 'acceptOrder'
+	]);
+
+	Route::post('/acceptTable', [
+		'uses' => 'PostsController@acceptTable',
+		'as' => 'acceptTable'
+	]);
+
+	Route::post('/sendEmail', [
+		'uses' => 'PostsController@sendEmail',
+		'as' => 'sendEmail'
+	]);
+
+	Route::get('/status', [
+		'uses' => 'FoodsController@statusFoods',
+		'as' => 'statusFoods'
+	]);
 });
 
 

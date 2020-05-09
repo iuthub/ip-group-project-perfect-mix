@@ -5,20 +5,24 @@
         <div class="collapse navbar-collapse col-md-10 col-lg-10" id="navbarText">
             <ul class="navbar-nav p-0 col-md-9 col-lg-9 flex-center">
                 <li class="nav-item active">
-                    <a class="nav-link" href="{{route('menuIndex')}}">Menu <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Drinks</a>
+                    <a class="nav-link" href="{{route('menuIndex')}}">Menu</a>
                 </li>
                 <li class="nav-item active">
                     <a class="nav-link" data-toggle="modal" data-target="#orderTableWindow">Table Ordering</a>
                 </li>
+            @if(Auth::check()) 
+                <li class="nav-item active">
+                   <a class="nav-link" href="{{route('statusFoods')}}">Status Orders</a> 
+                </li>
+            @endif
                 <li class="nav-item active">
                     <a class="nav-link" data-toggle="modal" data-target="#contactUsWindow">Contact Us</a>
                 </li>
+            @if(Auth::check())    
                 <li class="nav-item active">
                     <a class="nav-link" href="{{route('dashboardIndex')}}">Dashboard</a>
                 </li>
+            @endif
             </ul>
             <ul class="navbar-nav col-md-3 col-lg-3 p-0 flex-end">
             @if(!Auth::check())
@@ -104,4 +108,5 @@
             </span>
         </button>
     </div>
+
 </nav>

@@ -1,11 +1,15 @@
 @extends('layouts.header')
-
+@section('title')
+    <title>Menu</title>
+@endsection
 @include('partials.navbar')
 
 @section('content')
 
 <section class="menu-header position-relative">
-        <h3 class="title">Our Menu</h3>
+        <h3 class="title">Our Menu
+            @include('partials.alerts')
+        </h3>
         <div class="hero-footer-image">
             <img src="{{URL::to('assets/projectPhotos/ink white.png')}}" alt="">
         </div>
@@ -34,7 +38,9 @@
                 @foreach($food_types as $food_type)
                     <div class="col-md-3 col-lg-3 col-sm-6 mt-3">
                         <div class="item text-center" style="background: url({{URL::to($food_type->photo_path)}}) no-repeat center;background-size: cover;">
+                            <span>
                             <a href="#{{$food_type->name}}">{{$food_type->name}}</a>
+                            </span>
                         </div>
                     </div>
                 @endforeach
@@ -79,7 +85,12 @@
                                     </div>
                                     {{-- <button class="submit" class="btn order-btn" align="center">Order</button> --}}
                                     <input type="hidden" name="id" value="{{ $food->id }}">
+                                @if(Auth::check())
                                     <button type="submit" class="btn order-btn add-cart">Order</button>
+                                @else
+                                    <a class="btn order-btn add-cart" href="#" data-toggle="modal" data-target="#loginWindow">Order</a>
+                                @endif
+
                                 </form>
 
                             </div>

@@ -2,16 +2,19 @@
 
 @include('partials.adminNav')
 
+@include('partials.alerts')
+
 @section('content')
 
 
 <h1 align="center">Users</h1>
 
-<a href="{{route('getAddUser')}}" class="btn btn-success">Add</a>
+<a style="margin: 10px;" href="{{route('getAddUser')}}" class="btn btn-success">Add User</a>
 
-<table>
+<table class="table table-bordered">
 		<thead>
             <tr>
+                <th style="padding: 10px;">#</th>
                 <th style="padding: 10px;">Name</th>
                 <th style="padding: 10px;">Address</th>
                 <th style="padding: 10px;">Role</th>
@@ -24,10 +27,11 @@
             </tr>
         </thead>
         <tbody>
-
+        <?php $i=1 ?>
 		@foreach($users as $user)
 
 			<tr>
+                <td>{{$i++}}</td>
                 <td>{{$user->full_name}}</td>
                 <td>{{$user->address}}</td>
                 <td>{{$user->role->name}}</td>
@@ -35,8 +39,8 @@
                 <td>{{$user->phone_number}}</td>
                 <td>{{$user->created_at->format('d/m/Y')}}</td>
                 <td>{{$user->vaucher->type}}</td>
-                <td><a href="{{ route('getAdminUserEdit', ['id'=> $user->id ]) }}">Edit</a></td>
-                <td><a href="{{ route('getAdminUserDelete', ['id'=> $user->id ]) }}">Delete</a></td>
+                <td><a href="{{ route('getAdminUserEdit', ['id'=> $user->id ]) }}" class="btn btn-info">Edit</a></td>
+                <td><a href="{{ route('getAdminUserDelete', ['id'=> $user->id ]) }}" class="btn btn-danger">Delete</a></td>
             </tr>
 
 		@endforeach

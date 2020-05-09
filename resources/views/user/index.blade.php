@@ -1,12 +1,16 @@
 @extends ('layouts.header')
-
+@section('title')
+    <title>Dashboard</title>
+@endsection
 @include('partials.navbar')
 
 @section('content')
 
     <section class="dashboard-header position-relative">
         <div class="title">
-            <h3>Welcome, {{$user->full_name}}!</h3>
+            <h3>Welcome, {{$user->full_name}}!
+            @include('partials.alerts')
+        </h3>
         </div>
         <div class="hero-footer-image">
             <img src="{{URL::to('assets/projectPhotos/ink white.png')}}" alt="">
@@ -53,20 +57,21 @@
                 <div class="col-md-3 col-sm-12"></div>
                 <div class="col-md-3 col-sm-12">
                     <div class="item" id="total-orders">
-                        <h2 class="value text-left timer" data-from="0" data-to="112" data-speed="1000">{{$countOrder}}</h2>
+                        <h2 class="value text-left timer" data-from="0" data-to="{{$countOrder}}" data-speed="1000">{{$countOrder}}</h2>
                         <p class="title">Total orders</p>
                         <i class="fas fa-shopping-cart fa-3x custom-i"></i>
                     </div>
                 </div>
-                <div class="col-md-3 col-sm-12">
-                    <div class="item" id="total-expenses">
-                        <h2 class="value text-left">$<span class="timer" data-from="0" data-to="1520"
-                                data-speed="2000">
                 <?php 
                     $total=0;
                     foreach($orderHistories as $orderHistory)
                         $total= $total + $orderHistory->quantity * $orderHistory->price;
-                ?> {{$total}} 
+                ?>
+                <div class="col-md-3 col-sm-12">
+                    <div class="item" id="total-expenses">
+                        <h2 class="value text-left">$<span class="timer" data-from="0" data-to="{{$total}}"
+                                data-speed="1000">
+                          {{$total}} 
                           </span></h2>
                         <p class="title">Total expenses</p>
                         <i class="fas fa-wallet fa-3x custom-i"></i>
@@ -78,8 +83,12 @@
         <section class="history">
             <h2 class="text-center text-info mb-4">Here are the list of orders you recently made</h2>
             <div class="listings">
-                
-				@for($i=0;$i<5;$i++)
+                <?php $num ?>
+                @if(count($orderHistories)<5)
+                    <?php $num= count($orderHistories); ?>
+                @endif
+				
+                @for($i=0;$i<$num;$i++)
                 <div class="item">
                     <div class="row">
                         <div class="col-md-2">
@@ -112,6 +121,17 @@
     @include('partials.registration')
     <!-- Edit Profile Modal -->
 	@include('partials.edit')
+    @include('partials.tableOrder')
+    @include('partials.contact')
     <!-- Footer -->
 	@include('partials.footer')
 @endsection
+
+@section('script')
+<script>
+        $(".timer").waypoint(function(){
+        $(this).countTo()
+        },{triggerOnce:!0,offset:'90%'});
+</script>
+@endsection
+

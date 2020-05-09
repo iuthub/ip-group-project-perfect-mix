@@ -31,10 +31,12 @@
                     <div class="form-group" id="editFormPassConf">
                         <input type="password" class="form-control" placeholder="Confirm Password" name="password_confirmation">
                     </div>
-                     @if(Auth::user()->role->name=='admin')
+
+                    @if(Auth::user()->role->name=="adminss")
                     <div class="form-group" id="loginFormEmail">
                         <select class="form-control" id="role_id" name="role_id" required focus>
                                 <option value="{{$user->role->id}}" disabled selected>{{$user->role->name}}</option>
+
                                 @foreach($roles as $role)
                                     <option value="{{$role->id}}">{{ $role->name }}</option>
                                 @endforeach

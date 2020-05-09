@@ -3,6 +3,8 @@
 @include('partials.alerts')
 
 @section('content')
+<div style="width: 40%; margin: auto;" class="modal-body">
+    <h1 align="center">Add Food</h1>
 <div class="row">
     <div class="col-md-12">
         <form action="{{ route('editPostFood') }}" method="post" enctype="multipart/form-data">
@@ -12,7 +14,7 @@
             </div>
             <div class="form-group">
                 <label for="content">Description</label>
-                <input type="text" class="form-control" id="description" name="description" value="{{ $food->description }}" >
+                <textarea type="text" class="form-control" id="description" cols="30" rows="3" name="description">{{ $food->description }}</textarea>
             </div>
             <div class="form-group">
                 <label for="title">Cuisine</label>
@@ -39,16 +41,22 @@
             </div>
 
             {{-- upload file https://plugins.krajee.com/file-avatar-upload-demo --}}
-            <div class="form-group">
+            <div class="custom-file">
                 <label for="content">Photo</label>
                 <img style="width: 200px;" src="{{URL::to($food->photo_path) }}">
-                <input type="file" class="form-control" id="photo_path" name="photo_path">
+                <input type="file" class="custom-file-input" id="customFile">
+            </div>
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="photo_path">
+                <label class="custom-file-label" for="customFile">Choose File</label>
             </div>
             {{ csrf_field() }}
                 
             <input type="hidden" name="id" value="{{ $food->id }}">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button style="margin-top: 10px;" type="submit" class="btn btn-success">Edit Food</button>
+            <a style="margin-top: 10px;" href="{{route('getFoods')}}" class="btn btn-danger">Back</a>
         </form>
     </div>
+</div>
 </div>
 @endsection

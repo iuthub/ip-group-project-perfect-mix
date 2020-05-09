@@ -1,12 +1,15 @@
 @if(count($errors->all())>0)
     @foreach($errors->all() as $error)
-        <div id="messages" class="alert alert-danger alert-dismissible fade show" role="alert">
+        <div style="font-size:0.5em;padding: 0;" class="alertbox alert alert-danger alert-dismissible fade show" role="alert">
             <strong>
-                Error:
+            Error:
             </strong> {{ $error }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
         </div>
     @endforeach
+@endif
+
+@if(Session::has('info'))
+    <div style="font-size:0.5em;padding: 0;" class="alertbox alert alert-success alert-dismissible fade show" role="alert">
+        {{ Session::get('info') }}
+    </div>
 @endif

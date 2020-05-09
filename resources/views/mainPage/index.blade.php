@@ -1,10 +1,16 @@
 @extends('layouts.header')
-
+@section('title')
+	<title>Fantasy</title>
+@endsection
 @include('partials.navbar')
 
 @section('content')
 <section class="hero position-relative">
-		<h3 class="hero-title">Do you want to eat <strong>the delicious food</strong> in the world?</h3>
+	
+		<h3 class="hero-title">Do you want to eat <strong>the delicious food</strong> in the world?
+			@include('partials.alerts')
+</h3>
+		
 		<div class="hero-footer-image">
 			<img src="{{URL::to('assets/projectPhotos/ink white.png')}}" alt="">
 		</div>
@@ -13,9 +19,7 @@
 		<section class="our-work row wow fadeInUp" data-wow-duration="1s" data-wow-delay="500ms">
 			<div class="col-md-6 col-lg-6 col-sm-12 our-work-content">
 				<h3 class="title">About Us</h3>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam id felis et ipsum bibendum ultrices. Morbi
-					vitae
-					pulvinar velit. Sed aliquam dictum sapien, id sagittis augue malesuada eu.</p>
+				<p>Our culinary and service teams are as passionate about their work as they are experienced and professionally trained, taking great pride in delivering an exceptional all round experience.</p>
 			</div>
 			<div class="col-md-6 col-lg-6 col-sm-12 our-work-image">
 				<img src="{{URL::to('assets/projectPhotos/food.png')}}" alt="">
@@ -34,7 +38,7 @@
 				<div class="col-md-4 col-lg-4 col-sm-12 feature wow rotateIn" data-wow-delay="0.5s" data-wow-duration="1s">
 					<img src="{{URL::to('assets/projectPhotos/Group2.png')}}" alt="">
 					<h4 class="feature-content text-center">
-						<strong>Delicious</strong> foods from <br>the popular <strong>chef</strong> cookers
+						<strong>Friendly</strong> atmosphere
 					</h4>
 				</div>
 				<div class="col-md-4 col-lg-4 col-sm-12 feature wow rotateIn" data-wow-delay="0.5s" data-wow-duration="1s">

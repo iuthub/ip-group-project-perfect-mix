@@ -3,6 +3,8 @@
 @include('partials.alerts')
 
 @section('content')
+<div style="width: 40%; margin: auto;" class="modal-body">
+    <h1 align="center">Add Food</h1>
 <div class="row">
     <div class="col-md-12">
         <form action="{{ route('addPostFood') }}" method="post" enctype="multipart/form-data">
@@ -38,17 +40,16 @@
                 <input type="text" class="form-control" id="price" name="price">
             </div>
 
-
-            {{-- upload file https://plugins.krajee.com/file-avatar-upload-demo --}}
-            <div class="form-group">
-                <label for="content">Photo</label>
-                <input type="file" class="form-control" id="photo_path" name="photo_path">
+            <div class="custom-file">
+                <input type="file" class="custom-file-input" id="customFile" name="photo_path">
+                <label class="custom-file-label" for="customFile">Choose File</label>
             </div>
 
-
             {{ csrf_field() }}
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button style="margin-top: 10px;" type="submit" class="btn btn-success">Add Food</button>
+            <a style="margin-top: 10px;" href="{{route('getFoods')}}" class="btn btn-danger">Back</a>
         </form>
     </div>
+</div>
 </div>
 @endsection

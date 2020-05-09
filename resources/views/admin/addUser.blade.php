@@ -3,6 +3,7 @@
 @include('partials.alerts')
 
 @section('content')
+<div style="width: 40%; margin: auto;" class="modal-body">
 
 <form method="POST" action="{{ route('postAddUser') }}">
     @csrf
@@ -22,7 +23,8 @@
     <div class="form-group" id="loginFormEmail">
         <input type="password" class="form-control" placeholder="Password" name="password">
     </div>
-    <button type="submit" class="btn btn-primary mb-2">Register</button>
+    <button style="margin-top: 10px;" type="submit" class="btn btn-success">Add User</button>
+    <a style="margin-top: 10px;" href="{{route('getUsers')}}" class="btn btn-danger">Back</a>
 </form>
-
+</div>
 @endsection
