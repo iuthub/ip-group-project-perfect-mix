@@ -12,10 +12,16 @@
             <div class="modal-body">
                 <form action="{{route('reserveTable')}}" method="POST" id="tableOrderForm">
                     @csrf
-                    <h5 class="text-center text-primary"><strong>Get your table easily!</strong></h5>
+                    @if(Auth::check())
+                        <h5 class="text-center text-primary"><strong>Get your table easily!</strong></h5>
+                        <?php $isDisabled = "" ?>
+                    @else
+                        <h5 class="alert alert-danger text-center"><strong>You must be logged in!</strong></h5>
+                        <?php $isDisabled = "disabled" ?>
+                    @endif
                     <div class="form-group" id="tables">
-                        <select class="form-control" name="table" aria-describedby="tableHelp">
-                            <option value="" disabled>Choose your table</option>
+                        <select class="form-control" name="table" aria-describedby="tableHelp" <?php echo $isDisabled ?> >
+                            <option value="" >Choose your table</option>
                             <option value="1">Table #1</option>
                             <option value="2">Table #2</option>
                             <option value="3">Table #3</option>
@@ -27,29 +33,25 @@
                             <option value="9">Table #9</option>
                             <option value="10">Table #10</option>
                             <option value="11">Table #11</option>
-                        </select>                        
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="numberOfPeople">How many are you?</label>
-                        <input type="number" class="form-control" name="numPeople" value="1" min="1" max="15">
+                        <input type="number" class="form-control" name="numPeople" value="1" min="1" max="15" <?php echo $isDisabled ?>>
                     </div>
                     <div class="form-group">
                         <div class="row">
                             <div class="col-6">
                                 <label for="reserveStartTime">from</label>
-                                <input type="time" class="form-control" name="reserveStartTime">
+                                <input type="time" class="form-control" name="reserveStartTime" <?php echo $isDisabled ?>>
                             </div>
                             <div class="col-6">
                                 <label for="reserveEndTime">to</label>
-                                <input type="time" class="form-control" name="reserveEndTime">
+                                <input type="time" class="form-control" name="reserveEndTime" <?php echo $isDisabled ?>>
                             </div>
                         </div>
                     </div>
-                    @if(Auth::check())
-                        <button type="submit" class="btn btn-primary mb-2">Reserve</button>
-                    @else
-                        <button disabled type="submit" class="btn btn-primary mb-2">You are not Authorized</button>
-                    @endif
+                        <button type="submit" class="btn btn-primary mb-2" <?php echo $isDisabled ?>>Reserve</button>
                 </form>
             </div>
         </div>

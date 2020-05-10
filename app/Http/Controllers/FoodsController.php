@@ -153,7 +153,7 @@ class FoodsController extends Controller
     	$this->validate($request, [
             'name' => 'required|regex:/[A-z]{2,}/',
             'description' => 'required',
-            'price' => 'required|regex:/^((([1-9]\d*)|0)(.\d+)?)$/'
+            'price' => 'required|regex:/^[0-9]*\.?[0-9]*$/'
         ]);
        	
         $food = Food::find($request->input('id'));
